@@ -12,6 +12,11 @@ namespace AnimalCrossingQR
         public const int Height = 32;
 
         public string Title { get; set; }
+        public User Author { get; set; }
+
+        PatternType Type { get; set; }
+
+        Palette ColorPalette { get; set; }
         public byte[,] Data { get; set; }
 
         public Pattern()
@@ -24,45 +29,55 @@ namespace AnimalCrossingQR
 
         }
 
-        private Pattern(BinaryReader binaryReader)
+        public Pattern(BinaryReader binaryReader)
+            : this()
         {
+            NibbleReader nibbleReader = new NibbleReader(binaryReader);
 
+            byte type = nibbleReader.ReadByte();
+            if (type != 0x40)
+                throw new NotImplementedException();
+
+            int size = nibbleReader.ReadByte();
+            size = (size << 4) | nibbleReader.ReadNibble();
+            if (size != 0x26C)
+                throw new InvalidDataException("Size is invalid.");
+
+            Title = nibbleReader.ReadString(42);
+            Author = new User(nibbleReader);
+
+            for (int i = 0; i < 15; i++)
+                nibbleReader.ReadByte();
+
+            nibbleReader.ReadByte(); // Unknown
+            nibbleReader.ReadByte(); // Unknown, 0x0A
+            Type = (PatternType)nibbleReader.ReadByte();
+            nibbleReader.ReadByte(); // Unknown, 0x00
+            nibbleReader.ReadByte(); // Unknown, 0x00
+
+            for (int j = 0; j < Data.GetLength(1); j += 2)
+                for (int i = 0; i < Data.GetLength(0); i++)
+                {
+                    Data[i, j + 1] = nibbleReader.ReadNibble();
+                    Data[i, j] = nibbleReader.ReadNibble();
+                }
         }
     }
 
-    private class NibbleReader
+    public enum PatternType : byte
     {
-        private BinaryReader binaryReader;
+        LongOnePiece = 0,
+        ShortOnePiece = 1,
+        NoOnePiece = 2,
 
-        private bool byteAligned = true;
-        private byte halfReadByte;
+        LongSleeveShirt = 3,
+        ShortSleeveShirt = 4,
+        NoSleeveShirt = 5,
 
-        public NibbleReader(BinaryReader binaryReader)
-        {
-            this.binaryReader = binaryReader;
-        }
+        HornHat = 6,
+        Hat = 7,
 
-        public byte ReadNibble()
-        {
-            if (byteAligned)
-            {
-                halfReadByte = binaryReader.ReadByte();
-                byteAligned = false;
-                return halfReadByte >> 4;
-            }
-            else
-            {
-                byteAligned = true;
-                return halfReadByte & 0xF;
-            }
-        }
-
-        public byte ReadByte()
-        {
-            byte highNibble = ReadNibble();
-            byte lowNibble = ReadNibble();
-
-            return (highNibble << 4) || lowNibble;
-        }
+        Comic = 8,
+        Normal = 9,
     }
 }

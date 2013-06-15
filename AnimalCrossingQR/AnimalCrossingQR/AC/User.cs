@@ -17,5 +17,19 @@ namespace AnimalCrossingQR
             Town = town;
             UniqueID = uniqueID;
         }
+
+        public User(NibbleReader nibbleReader)
+        {
+            UniqueID = new byte[6];
+
+            UniqueID[0] = nibbleReader.ReadByte();
+            UniqueID[1] = nibbleReader.ReadByte();
+            Name = nibbleReader.ReadString(20);
+            UniqueID[2] = nibbleReader.ReadByte();
+            UniqueID[3] = nibbleReader.ReadByte();
+            Town = nibbleReader.ReadString(20);
+            UniqueID[4] = nibbleReader.ReadByte();
+            UniqueID[5] = nibbleReader.ReadByte();
+        }
     }
 }

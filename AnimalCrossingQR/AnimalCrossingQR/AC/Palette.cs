@@ -176,7 +176,12 @@ namespace AnimalCrossingQR
 
         public Palette()
         {
-            Colors = new byte[16];
+            Colors = new byte[15];
+        }
+
+        public Palette(NibbleReader nibbleReader)
+        {
+            
         }
     }
 }
