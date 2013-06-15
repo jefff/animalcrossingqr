@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.testBox = new System.Windows.Forms.PictureBox();
+            this.qrButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.testBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,11 +41,22 @@
             this.testBox.TabIndex = 0;
             this.testBox.TabStop = false;
             // 
+            // qrButton
+            // 
+            this.qrButton.Location = new System.Drawing.Point(12, 362);
+            this.qrButton.Name = "qrButton";
+            this.qrButton.Size = new System.Drawing.Size(103, 26);
+            this.qrButton.TabIndex = 1;
+            this.qrButton.Text = "Load QR";
+            this.qrButton.UseVisualStyleBackColor = true;
+            this.qrButton.Click += new System.EventHandler(this.qrButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 368);
+            this.ClientSize = new System.Drawing.Size(389, 413);
+            this.Controls.Add(this.qrButton);
             this.Controls.Add(this.testBox);
             this.Name = "MainForm";
             this.Text = "Animal Crossing QR";
@@ -57,6 +69,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox testBox;
+        private System.Windows.Forms.Button qrButton;
     }
 }
 

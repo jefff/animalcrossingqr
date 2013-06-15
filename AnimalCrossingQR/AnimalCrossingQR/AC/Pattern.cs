@@ -25,13 +25,21 @@ namespace AnimalCrossingQR
         }
 
         public Pattern(byte[] rawData)
-        {
-
-        }
-
-        public Pattern(BinaryReader binaryReader)
             : this()
         {
+            LoadFromBytes(rawData);
+        }
+
+        private void LoadFromBytes(byte[] data)
+        {
+            MemoryStream memoryStream = new MemoryStream(data);
+            LoadFromStream(memoryStream);
+            memoryStream.Close();
+        }
+
+        private void LoadFromStream(Stream stream)
+        {
+            BinaryReader binaryReader = new BinaryReader(stream);
             NibbleReader nibbleReader = new NibbleReader(binaryReader);
 
             byte type = nibbleReader.ReadByte();

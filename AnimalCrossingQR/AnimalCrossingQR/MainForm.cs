@@ -151,10 +151,7 @@ namespace AnimalCrossingQR
             };
             #endregion
 
-            MemoryStream ms = new MemoryStream(rawData2);
-            BinaryReader br = new BinaryReader(ms);
-
-            Pattern p = new Pattern(br);
+            Pattern p = new Pattern(rawData2);
 
             testBox.Image = RenderPattern(p, 8);
         }
@@ -179,6 +176,18 @@ namespace AnimalCrossingQR
                 }
 
             return bitmap;
+        }
+
+        private void qrButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                ZXing.BarcodeReader reader = new ZXing.BarcodeReader();
+                var r = reader.Decode(new Bitmap(Image.FromFile(ofd.FileName)));
+                Pattern p = new Pattern(r.RawBytes);
+                testBox.Image = RenderPattern(p, 8);
+            }
         }
     }
 }
