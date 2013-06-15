@@ -55,10 +55,10 @@ namespace AnimalCrossingQR
             nibbleReader.ReadByte(); // Unknown, 0x00
             nibbleReader.ReadByte(); // Unknown, 0x00
 
-            for (int j = 0; j < Data.GetLength(1); j += 2)
-                for (int i = 0; i < Data.GetLength(0); i++)
+            for (int j = 0; j < Data.GetLength(1); j++)
+                for (int i = 0; i < Data.GetLength(0); i += 2)
                 {
-                    Data[i, j + 1] = nibbleReader.ReadNibble();
+                    Data[i + 1, j] = nibbleReader.ReadNibble();
                     Data[i, j] = nibbleReader.ReadNibble();
                 }
         }

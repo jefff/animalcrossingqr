@@ -28,21 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.testBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.testBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // testBox
+            // 
+            this.testBox.Location = new System.Drawing.Point(12, 12);
+            this.testBox.Name = "testBox";
+            this.testBox.Size = new System.Drawing.Size(365, 344);
+            this.testBox.TabIndex = 0;
+            this.testBox.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(389, 368);
+            this.Controls.Add(this.testBox);
             this.Name = "MainForm";
             this.Text = "Animal Crossing QR";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.testBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox testBox;
     }
 }
 

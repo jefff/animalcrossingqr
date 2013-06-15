@@ -67,6 +67,31 @@ namespace AnimalCrossingQR
             BinaryReader br = new BinaryReader(ms);
 
             Pattern p = new Pattern(br);
+
+            testBox.Image = RenderPattern(p, 8);
+        }
+
+        private System.Drawing.Color FromPaletteColor(Color color)
+        {
+            return System.Drawing.Color.FromArgb(color.Red, color.Green, color.Blue);
+        }
+
+        private Image RenderPattern(Pattern pattern, int scale)
+        {
+            Bitmap bitmap = new Bitmap(Pattern.Width * scale, Pattern.Height * scale);
+            
+            for (int i = 0; i < Pattern.Width; i++)
+                for (int j = 0; j < Pattern.Height; j++)
+                {
+                    var c = Palette.ColorPalette[pattern.Data[i, j] * 9];
+
+
+                    for (int x = 0; x < scale; x++)
+                        for (int y = 0; y < scale; y++)
+                            bitmap.SetPixel(scale * i + x, scale * j + y, FromPaletteColor(c));
+                }
+
+            return bitmap;
         }
     }
 }
