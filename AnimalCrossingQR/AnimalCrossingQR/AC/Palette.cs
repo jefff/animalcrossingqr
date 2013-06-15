@@ -8,7 +8,7 @@ namespace AnimalCrossingQR
     public class Palette
     {
         #region Palette
-        public static readonly Color[] ColorPalette = new Color[]
+        private static readonly Color[] ColorPalette = new Color[]
         {
             new Color(255, 239, 255),
             new Color(255, 154, 173),
@@ -180,8 +180,25 @@ namespace AnimalCrossingQR
         }
 
         public Palette(NibbleReader nibbleReader)
+            : this()
         {
-            
+            for (int i = 0; i < 15; i++)
+                Colors[i] = nibbleReader.ReadByte();
+        }
+
+        public Color GetColor(int index)
+        {
+            return GetColorFromID(Colors[index]);
+        }
+
+        public static Color GetColorFromID(byte id)
+        {
+            // Grayscale colors
+            if ((id & 0x0F) == 0x0F)
+                return ColorPalette[144 + (id >> 4)];
+
+            // Other colors
+            return ColorPalette[((id & 0xF0) >> 4) * 9 + (id & 0x0F)];
         }
     }
 }

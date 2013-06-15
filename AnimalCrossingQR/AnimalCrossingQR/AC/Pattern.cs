@@ -16,7 +16,7 @@ namespace AnimalCrossingQR
 
         PatternType Type { get; set; }
 
-        Palette ColorPalette { get; set; }
+        public Palette ColorPalette { get; set; }
         public byte[,] Data { get; set; }
 
         public Pattern()
@@ -46,8 +46,7 @@ namespace AnimalCrossingQR
             Title = nibbleReader.ReadString(42);
             Author = new User(nibbleReader);
 
-            for (int i = 0; i < 15; i++)
-                nibbleReader.ReadByte();
+            ColorPalette = new Palette(nibbleReader);
 
             nibbleReader.ReadByte(); // Unknown
             nibbleReader.ReadByte(); // Unknown, 0x0A
@@ -61,6 +60,11 @@ namespace AnimalCrossingQR
                     Data[i + 1, j] = nibbleReader.ReadNibble();
                     Data[i, j] = nibbleReader.ReadNibble();
                 }
+        }
+
+        public Color GetPixel(int x, int y)
+        {
+            return ColorPalette.GetColor(Data[x, y]);
         }
     }
 
