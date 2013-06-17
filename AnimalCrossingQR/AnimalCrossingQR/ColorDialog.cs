@@ -18,10 +18,12 @@ namespace AnimalCrossingQR
 
         private Brush[] oppositePaletteBrushes;
         private Brush[] paletteBrushes;
+        private string[] paletteLabels;
+
+        private int selectedIndex = -1;
         private int[] currentPalette;
 
         private Font textFont;
-
         private StringFormat stringFormat;
 
         private const int ColorBoxBorder = 1;
@@ -50,7 +52,7 @@ namespace AnimalCrossingQR
                 .Select(c => (c.Red * 0.2126) + (c.Green * 0.7152) + (c.Blue * 0.0722) > 128 ? Brushes.Black : Brushes.White)
                 .ToArray();
 
-
+            paletteLabels = new string[Palette.ColorPalette.Length];
             currentPalette = new int[15];
             Random r = new Random();
             for (int i = 0; i < 15; i++)
@@ -68,12 +70,16 @@ namespace AnimalCrossingQR
 
             graphics.FillRectangle(Brushes.Gray, new Rectangle(0, 4 * (ColorBoxSize * 3 + NineBoxSpacing) - 1, 21 * 15 + 1, 21 + 1));
             for (int i = 0; i < 15; i++)
-                graphics.FillRectangle(paletteBrushes[FirstGrayscaleIndex + i],
-                    new Rectangle(
+            {
+                Rectangle rect = new Rectangle(
                         ColorBoxBorder + (ColorBoxSize + ColorBoxBorder) * i,
                         4 * (ColorBoxSize * 3 + NineBoxSpacing),
                         ColorBoxSize,
-                        ColorBoxSize));
+                        ColorBoxSize);
+
+                graphics.FillRectangle(paletteBrushes[FirstGrayscaleIndex + i], rect);
+                graphics.DrawString(paletteLabels[FirstGrayscaleIndex + i], textFont, oppositePaletteBrushes[FirstGrayscaleIndex + i], rect, stringFormat);
+            }
         }
 
         private void DrawNineBox(Graphics graphics, int x, int y, int colorIndex)
@@ -90,13 +96,22 @@ namespace AnimalCrossingQR
                             ColorBoxSize);
 
                     graphics.FillRectangle(paletteBrushes[colorIndex + 3 * j + i], rect);
-
-                    graphics.DrawString("14", textFont, oppositePaletteBrushes[colorIndex + 3 * j + i], rect, stringFormat);
+                    graphics.DrawString(paletteLabels[colorIndex + 3 * j + i], textFont, oppositePaletteBrushes[colorIndex + 3 * j + i], rect, stringFormat);
                 }
+        }
+
+        private void UpdateLabels()
+        {
+            for (int i = 0; i < paletteLabels.Length; i++)
+                paletteLabels[i] = "";
+
+            for (int i = 0; i < currentPalette.Length; i++)
+                paletteLabels[currentPalette[i]] = (i + 1).ToString();
         }
 
         private void colorPanel_Paint(object sender, PaintEventArgs e)
         {
+            UpdateLabels();
             DrawFullColorPalette(e.Graphics);
         }
 
@@ -104,9 +119,16 @@ namespace AnimalCrossingQR
         {
             for (int i = 0; i < currentPalette.Length; i++)
             {
-                e.Graphics.FillRectangle(i == 0 ? Brushes.Gold : Brushes.Black, new Rectangle(5 - 2, 5 - 2 + 20 * i, 50 + 4, 15 + 4));
+                e.Graphics.FillRectangle(i == selectedIndex ? Brushes.Gold : Brushes.Black, new Rectangle(5 - 2, 5 - 2 + 20 * i, 50 + 4, 15 + 4));
                 e.Graphics.FillRectangle(paletteBrushes[currentPalette[i]], new Rectangle(5, 5 + 20 * i, 50, 15));
             }
+        }
+
+        private void palettePanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.X > 5 && e.X < 55)
+                selectedIndex = (e.Y - 5) / 20;
+            palettePanel.Invalidate();
         }
     }
 }

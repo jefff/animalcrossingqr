@@ -47,6 +47,7 @@
             this.palettePanel.Size = new System.Drawing.Size(78, 307);
             this.palettePanel.TabIndex = 5;
             this.palettePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.palettePanel_Paint);
+            this.palettePanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.palettePanel_MouseClick);
             // 
             // ColorDialog
             // 
