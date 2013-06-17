@@ -32,7 +32,7 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
-            this.paletteControl1 = new AnimalCrossingQR.PaletteControl();
+            this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.SuspendLayout();
             // 
             // colorPanel
@@ -75,13 +75,13 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // paletteControl1
+            // paletteControl
             // 
-            this.paletteControl1.Location = new System.Drawing.Point(12, 12);
-            this.paletteControl1.Name = "paletteControl1";
-            this.paletteControl1.SelectedIndex = 0;
-            this.paletteControl1.Size = new System.Drawing.Size(78, 308);
-            this.paletteControl1.TabIndex = 5;
+            this.paletteControl.Location = new System.Drawing.Point(12, 12);
+            this.paletteControl.Name = "paletteControl";
+            this.paletteControl.SelectedIndex = 0;
+            this.paletteControl.Size = new System.Drawing.Size(78, 308);
+            this.paletteControl.TabIndex = 5;
             // 
             // ColorDialog
             // 
@@ -90,7 +90,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(431, 397);
-            this.Controls.Add(this.paletteControl1);
+            this.Controls.Add(this.paletteControl);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.cancelButton);
@@ -110,6 +110,6 @@
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
-        private PaletteControl paletteControl1;
+        private PaletteControl paletteControl;
     }
 }

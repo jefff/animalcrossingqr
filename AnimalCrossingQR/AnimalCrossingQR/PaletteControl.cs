@@ -37,6 +37,11 @@ namespace AnimalCrossingQR
             }
         }
         public PaletteList Items { get; private set; }
+        public int SelectedItem
+        {
+            get { return SelectedIndex == -1 ? -1 : Items[SelectedIndex]; }
+            set { if (SelectedIndex != -1) Items[SelectedIndex] = value; }
+        }
 
         private int selectedIndex;
         public int SelectedIndex { get { return selectedIndex; } set { selectedIndex = value; Invalidate(); } }
@@ -45,7 +50,7 @@ namespace AnimalCrossingQR
 
         public PaletteControl()
         {
-            Items = new PaletteList(15);
+            Items = new PaletteList(15, Invalidate);
 
             paletteBrushes = Palette.ColorPalette
                 .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(c.Red, c.Green, c.Blue)))
