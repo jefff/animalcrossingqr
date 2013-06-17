@@ -198,7 +198,7 @@ namespace AnimalCrossingQR
 
         public static Color GetNearestColorCode(Color color)
         {
-            return ColorPalette.Min(c => Color.DistanceSquared(c, color));
+            return ColorPalette.Aggregate((a, b) => Color.DistanceSquared(a, color) < Color.DistanceSquared(b, color) ? a : b);
         }
 
         private static byte GetColorCode(int index)

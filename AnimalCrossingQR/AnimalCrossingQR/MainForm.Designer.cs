@@ -28,48 +28,115 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.testBox = new System.Windows.Forms.PictureBox();
-            this.qrButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.testBox)).BeginInit();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newPatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // testBox
+            // menuStrip
             // 
-            this.testBox.Location = new System.Drawing.Point(12, 12);
-            this.testBox.Name = "testBox";
-            this.testBox.Size = new System.Drawing.Size(365, 344);
-            this.testBox.TabIndex = 0;
-            this.testBox.TabStop = false;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(389, 24);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip";
             // 
-            // qrButton
+            // fileToolStripMenuItem
             // 
-            this.qrButton.Location = new System.Drawing.Point(12, 362);
-            this.qrButton.Name = "qrButton";
-            this.qrButton.Size = new System.Drawing.Size(103, 26);
-            this.qrButton.TabIndex = 1;
-            this.qrButton.Text = "Load QR";
-            this.qrButton.UseVisualStyleBackColor = true;
-            this.qrButton.Click += new System.EventHandler(this.qrButton_Click);
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newPatternToolStripMenuItem,
+            this.openPatternToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newPatternToolStripMenuItem
+            // 
+            this.newPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blankToolStripMenuItem,
+            this.fromImageToolStripMenuItem});
+            this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newPatternToolStripMenuItem.Text = "New Pattern";
+            // 
+            // blankToolStripMenuItem
+            // 
+            this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
+            this.blankToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.blankToolStripMenuItem.Text = "Blank";
+            // 
+            // fromImageToolStripMenuItem
+            // 
+            this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
+            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fromImageToolStripMenuItem.Text = "From Image...";
+            // 
+            // openPatternToolStripMenuItem
+            // 
+            this.openPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromQRCodeToolStripMenuItem});
+            this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openPatternToolStripMenuItem.Text = "Open Pattern";
+            // 
+            // fromQRCodeToolStripMenuItem
+            // 
+            this.fromQRCodeToolStripMenuItem.Name = "fromQRCodeToolStripMenuItem";
+            this.fromQRCodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fromQRCodeToolStripMenuItem.Text = "From QR Code";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 413);
-            this.Controls.Add(this.qrButton);
-            this.Controls.Add(this.testBox);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Animal Crossing QR";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.testBox)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox testBox;
-        private System.Windows.Forms.Button qrButton;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newPatternToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openPatternToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromQRCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+
     }
 }
 
