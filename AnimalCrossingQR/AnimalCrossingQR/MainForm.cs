@@ -47,5 +47,11 @@ namespace AnimalCrossingQR
         {
             Close();
         }
+
+        private void blankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.ShowDialog();
+        }
     }
 }

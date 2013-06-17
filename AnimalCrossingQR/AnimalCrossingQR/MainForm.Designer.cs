@@ -75,6 +75,7 @@
             this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
             this.blankToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.blankToolStripMenuItem.Text = "Blank";
+            this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
             // 
             // fromImageToolStripMenuItem
             // 
