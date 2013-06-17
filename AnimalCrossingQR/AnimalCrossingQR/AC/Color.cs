@@ -17,5 +17,17 @@ namespace AnimalCrossingQR
             Green = green;
             Blue = blue;
         }
+
+        public static double DistanceSquared(Color a, Color b)
+        {
+            return (a.Red - b.Red) * (a.Red - b.Red) +
+                (a.Green - b.Green) * (a.Green - b.Green) +
+                (a.Blue - b.Blue) * (a.Blue - b.Blue);
+        }
+
+        public static double Distance(Color a, Color b)
+        {
+            return Math.Sqrt(DistanceSquared(a, b));
+        }
     }
 }

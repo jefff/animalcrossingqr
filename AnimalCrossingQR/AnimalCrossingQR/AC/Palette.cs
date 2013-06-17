@@ -8,7 +8,7 @@ namespace AnimalCrossingQR
     public class Palette
     {
         #region Palette
-        private static readonly Color[] ColorPalette = new Color[]
+        public static readonly Color[] ColorPalette = new Color[]
         {
             new Color(255, 239, 255),
             new Color(255, 154, 173),
@@ -188,17 +188,35 @@ namespace AnimalCrossingQR
 
         public Color GetColor(int index)
         {
-            return GetColorFromID(Colors[index]);
+            return GetColorByCode(Colors[index]);
         }
 
-        public static Color GetColorFromID(byte id)
+        public static Color GetColorByCode(byte code)
+        {
+            return ColorPalette[GetColorIndex(code)];
+        }
+
+        public static Color GetNearestColorCode(Color color)
+        {
+            return ColorPalette.Min(c => Color.DistanceSquared(c, color));
+        }
+
+        private static byte GetColorCode(int index)
+        {
+            if (index >= 144)
+                return (byte)(((index - 144) << 4) | 0x0F);
+
+            return (byte)(((index / 9) << 4) | (index % 9));
+        }
+
+        private static int GetColorIndex(byte code)
         {
             // Grayscale colors
-            if ((id & 0x0F) == 0x0F)
-                return ColorPalette[144 + (id >> 4)];
+            if ((code & 0x0F) == 0x0F)
+                return 144 + (code >> 4);
 
             // Other colors
-            return ColorPalette[((id & 0xF0) >> 4) * 9 + (id & 0x0F)];
+            return ((code & 0xF0) >> 4) * 9 + (code & 0x0F);
         }
     }
 }

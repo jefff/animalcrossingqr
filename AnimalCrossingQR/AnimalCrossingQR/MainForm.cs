@@ -180,6 +180,18 @@ namespace AnimalCrossingQR
 
         private void qrButton_Click(object sender, EventArgs e)
         {
+            ZXing.BarcodeWriter writer = new ZXing.BarcodeWriter();
+            writer.Format = ZXing.BarcodeFormat.QR_CODE;
+            var bm = writer.Encode("blargtacular!");
+            ZXing.Rendering.BitmapRenderer br = new ZXing.Rendering.BitmapRenderer();
+
+            Bitmap bit = br.Render(bm, ZXing.BarcodeFormat.QR_CODE, "worty wort");
+
+            testBox.Image = bit;
+
+            return;
+
+
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -187,6 +199,8 @@ namespace AnimalCrossingQR
                 var r = reader.Decode(new Bitmap(Image.FromFile(ofd.FileName)));
                 Pattern p = new Pattern(r.RawBytes);
                 testBox.Image = RenderPattern(p, 8);
+
+
             }
         }
     }
