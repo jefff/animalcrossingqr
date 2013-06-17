@@ -37,6 +37,7 @@
             this.fromQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.patternPanel = new System.Windows.Forms.Panel();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(389, 24);
+            this.menuStrip.Size = new System.Drawing.Size(626, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -109,11 +110,19 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // patternPanel
+            // 
+            this.patternPanel.Location = new System.Drawing.Point(95, 27);
+            this.patternPanel.Name = "patternPanel";
+            this.patternPanel.Size = new System.Drawing.Size(519, 433);
+            this.patternPanel.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 413);
+            this.ClientSize = new System.Drawing.Size(626, 472);
+            this.Controls.Add(this.patternPanel);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
@@ -137,6 +146,7 @@
         private System.Windows.Forms.ToolStripMenuItem fromQRCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Panel patternPanel;
 
     }
 }

@@ -45,9 +45,6 @@ namespace AnimalCrossingQR
                 .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(c.Red, c.Green, c.Blue)))
                 .ToArray();
 
-            /*oppositePaletteBrushes = Palette.ColorPalette
-                .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(255 - c.Red, 255 - c.Green, 255 - c.Blue)))
-                .ToArray();*/
             oppositePaletteBrushes = Palette.ColorPalette
                 .Select(c => (c.Red * 0.2126) + (c.Green * 0.7152) + (c.Blue * 0.0722) > 128 ? Brushes.Black : Brushes.White)
                 .ToArray();
@@ -117,18 +114,13 @@ namespace AnimalCrossingQR
 
         private void palettePanel_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < currentPalette.Length; i++)
-            {
-                e.Graphics.FillRectangle(i == selectedIndex ? Brushes.Gold : Brushes.Black, new Rectangle(5 - 2, 5 - 2 + 20 * i, 50 + 4, 15 + 4));
-                e.Graphics.FillRectangle(paletteBrushes[currentPalette[i]], new Rectangle(5, 5 + 20 * i, 50, 15));
-            }
+
         }
 
         private void palettePanel_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.X > 5 && e.X < 55)
                 selectedIndex = (e.Y - 5) / 20;
-            palettePanel.Invalidate();
         }
 
         private void colorPanel_MouseClick(object sender, MouseEventArgs e)
@@ -140,7 +132,6 @@ namespace AnimalCrossingQR
             if (color != null)
                 currentPalette[selectedIndex] = color.Value;
 
-            palettePanel.Invalidate();
             colorPanel.Invalidate();
         }
 
@@ -194,6 +185,18 @@ namespace AnimalCrossingQR
                 }
 
             return null;
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }
