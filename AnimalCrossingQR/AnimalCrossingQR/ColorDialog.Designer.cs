@@ -39,6 +39,7 @@
             this.colorPanel.Size = new System.Drawing.Size(322, 308);
             this.colorPanel.TabIndex = 4;
             this.colorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.colorPanel_Paint);
+            this.colorPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.colorPanel_MouseClick);
             // 
             // palettePanel
             // 
@@ -56,6 +57,7 @@
             this.ClientSize = new System.Drawing.Size(430, 332);
             this.Controls.Add(this.palettePanel);
             this.Controls.Add(this.colorPanel);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ColorDialog";
             this.Text = "Edit Palette";

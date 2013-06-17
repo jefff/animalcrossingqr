@@ -130,5 +130,70 @@ namespace AnimalCrossingQR
                 selectedIndex = (e.Y - 5) / 20;
             palettePanel.Invalidate();
         }
+
+        private void colorPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (selectedIndex == -1)
+                return;
+
+            int? color = GetColorClick(e.X, e.Y);
+            if (color != null)
+                currentPalette[selectedIndex] = color.Value;
+
+            palettePanel.Invalidate();
+            colorPanel.Invalidate();
+        }
+
+        private bool IsInRectangle(Rectangle rect, int pX, int pY)
+        {
+            return (pX > rect.Left) && (pY > rect.Top) && (pX < rect.Right) && (pY < rect.Bottom);
+        }
+
+        private int? GetColorClick(int pX, int pY)
+        {
+            for (int y = 0; y < 4; y++)
+                for (int x = 0; x < 4; x++)
+                {
+                    int? index = IsInNineBox(
+                        x * (ColorBoxSize * 3 + NineBoxSpacing) + ColorBoxesLeftBorder,
+                        y * (ColorBoxSize * 3 + NineBoxSpacing) + ColorBoxBorder,
+                        pX, pY);
+
+                    if (index != null)
+                        return (x + 4 * y) * 9 + index;
+                }
+
+            for (int i = 0; i < 15; i++)
+            {
+                Rectangle rect = new Rectangle(
+                        ColorBoxBorder + (ColorBoxSize + ColorBoxBorder) * i,
+                        4 * (ColorBoxSize * 3 + NineBoxSpacing),
+                        ColorBoxSize,
+                        ColorBoxSize);
+
+                if (IsInRectangle(rect, pX, pY))
+                    return FirstGrayscaleIndex + i;
+            }
+
+            return null;
+        }
+
+        private int? IsInNineBox(int x, int y, int pX, int pY)
+        {
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    Rectangle rect = new Rectangle(
+                            x + (ColorBoxSize + ColorBoxBorder) * i,
+                            y + (ColorBoxSize + ColorBoxBorder) * j,
+                            ColorBoxSize,
+                            ColorBoxSize);
+
+                    if (IsInRectangle(rect, pX, pY))
+                        return 3 * j + i;
+                }
+
+            return null;
+        }
     }
 }
