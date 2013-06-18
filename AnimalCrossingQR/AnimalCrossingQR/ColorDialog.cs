@@ -11,11 +11,6 @@ namespace AnimalCrossingQR
 {
     public partial class ColorDialog : Form
     {
-        public ColorDialog()
-        {
-            InitializeComponent();
-        }
-
         public PaletteList Items { get { return paletteControl.Items; } }
 
         private Brush[] oppositePaletteBrushes;
@@ -33,9 +28,21 @@ namespace AnimalCrossingQR
         private const int NineBoxSpacing = 10;
         private const int FirstGrayscaleIndex = 144;
 
+        public ColorDialog()
+        {
+            InitializeComponent();
+        }
+
+        public ColorDialog(PaletteList list)
+            : this()
+        {
+            for (int i = 0; i < list.Length; i++)
+                Items[i] = list[i];
+        }
+
         private void ColorDialog_Load(object sender, EventArgs e)
         {
-            textFont = new System.Drawing.Font("Arial", 8);
+            textFont = new System.Drawing.Font("Microsoft San Serif", 8);
             stringFormat = new StringFormat()
             {
                 LineAlignment = StringAlignment.Center,
@@ -51,9 +58,6 @@ namespace AnimalCrossingQR
                 .ToArray();
 
             paletteLabels = new string[Palette.ColorPalette.Length];
-            Random r = new Random();
-            for (int i = 0; i < 15; i++)
-                paletteControl.Items[i] = r.Next(Palette.ColorPalette.Length);
         }
 
         private void DrawFullColorPalette(Graphics graphics)

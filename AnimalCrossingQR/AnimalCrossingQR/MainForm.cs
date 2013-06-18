@@ -55,12 +55,46 @@ namespace AnimalCrossingQR
 
         private void editColorsButton_Click(object sender, EventArgs e)
         {
-            ColorDialog colorDialog = new ColorDialog();
+            ColorDialog colorDialog = new ColorDialog(paletteControl.Items);
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < paletteControl.Items.Length; i++)
                     paletteControl.Items[i] = colorDialog.Items[i];
             }
+        }
+
+        private void fromQRCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open);
+                Bitmap bitmap = (Bitmap)Bitmap.FromStream(fileStream);
+                fileStream.Close();
+
+                LoadFromQR(bitmap);
+            }
+        }
+
+        private void LoadFromQR(Bitmap bitmap)
+        {
+            ZXing.BarcodeReader reader = new ZXing.BarcodeReader();
+            ZXing.Result result = reader.Decode(bitmap);
+
+            if (result != null)
+            {
+                Pattern pattern = new Pattern(result.RawBytes);
+                LoadPattern(pattern);
+            }
+        }
+
+        private void LoadPattern(Pattern pattern)
+        {
+            titleText.Text = pattern.Title;
+            authorNameText.Text = pattern.Author.Name;
+            authorTownText.Text = pattern.Author.Town;
+            authorUniqueIDText.Text = string.Join(":", pattern.Author.UniqueID.Select(b => b.ToString("X2")));
         }
     }
 }

@@ -107,6 +107,7 @@
             this.fromQRCodeToolStripMenuItem.Name = "fromQRCodeToolStripMenuItem";
             this.fromQRCodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.fromQRCodeToolStripMenuItem.Text = "From QR Code";
+            this.fromQRCodeToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -139,6 +140,7 @@
             // 
             // titleText
             // 
+            this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.titleText.Location = new System.Drawing.Point(632, 57);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(197, 20);

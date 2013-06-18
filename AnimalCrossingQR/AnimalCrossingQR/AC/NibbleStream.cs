@@ -49,9 +49,8 @@ namespace AnimalCrossingQR
 
             for (int i = 0; i < rawData.Length; i++)
                 rawData[i] = ReadByte();
-
-            
-            return encoding.GetString(rawData);
+                        
+            return encoding.GetString(rawData).TrimEnd(new [] { '\0' });
         }
     }
 }
