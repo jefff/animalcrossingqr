@@ -95,6 +95,12 @@ namespace AnimalCrossingQR
             authorNameText.Text = pattern.Author.Name;
             authorTownText.Text = pattern.Author.Town;
             authorUniqueIDText.Text = string.Join(":", pattern.Author.UniqueID.Select(b => b.ToString("X2")));
+
+            for (int i = 0; i < pattern.ColorPalette.Colors.Length; i++)
+                paletteControl.Items[i] = Palette.GetColorIndexByCode(pattern.ColorPalette.Colors[i]);
+
+            patternPanel.BackgroundImageLayout = ImageLayout.None;
+            patternPanel.BackgroundImage = RenderPattern(pattern, 8);
         }
     }
 }

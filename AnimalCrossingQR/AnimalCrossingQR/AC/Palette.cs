@@ -193,7 +193,7 @@ namespace AnimalCrossingQR
 
         public static Color GetColorByCode(byte code)
         {
-            return ColorPalette[GetColorIndex(code)];
+            return ColorPalette[GetColorIndexByCode(code)];
         }
 
         public static Color GetNearestColorCode(Color color)
@@ -209,7 +209,7 @@ namespace AnimalCrossingQR
             return (byte)(((index / 9) << 4) | (index % 9));
         }
 
-        private static int GetColorIndex(byte code)
+        public static int GetColorIndexByCode(byte code)
         {
             // Grayscale colors
             if ((code & 0x0F) == 0x0F)
