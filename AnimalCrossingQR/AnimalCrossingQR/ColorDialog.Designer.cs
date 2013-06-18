@@ -48,7 +48,7 @@
             // 
             this.clearButton.Location = new System.Drawing.Point(12, 326);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(78, 26);
+            this.clearButton.Size = new System.Drawing.Size(60, 26);
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -80,6 +80,7 @@
             this.paletteControl.Location = new System.Drawing.Point(12, 12);
             this.paletteControl.Name = "paletteControl";
             this.paletteControl.SelectedIndex = 0;
+            this.paletteControl.SelectedItem = 0;
             this.paletteControl.Size = new System.Drawing.Size(78, 308);
             this.paletteControl.TabIndex = 5;
             // 

@@ -11,31 +11,6 @@ namespace AnimalCrossingQR
 {
     public partial class PaletteControl : UserControl
     {
-        public class PaletteList
-        {
-            private int[] colors;
-            private Action invalidate;
-
-            public int Length { get { return colors.Length; } }
-
-            public PaletteList(int size, Action invalidate = null)
-            {
-                colors = new int[size];
-                this.invalidate = invalidate;
-            }
-
-            private void CallInvalidate()
-            {
-                if (invalidate != null)
-                    invalidate();
-            }
-
-            public int this[int index]
-            {
-                get { return colors[index]; }
-                set { colors[index] = value; CallInvalidate(); }
-            }
-        }
         public PaletteList Items { get; private set; }
         public int SelectedItem
         {
@@ -72,6 +47,32 @@ namespace AnimalCrossingQR
         {
             if (e.X > 5 && e.X < 55)
                 SelectedIndex = (e.Y - 5) / 20;
+        }
+    }
+
+    public class PaletteList
+    {
+        private int[] colors;
+        private Action invalidate;
+
+        public int Length { get { return colors.Length; } }
+
+        public PaletteList(int size, Action invalidate = null)
+        {
+            colors = new int[size];
+            this.invalidate = invalidate;
+        }
+
+        private void CallInvalidate()
+        {
+            if (invalidate != null)
+                invalidate();
+        }
+
+        public int this[int index]
+        {
+            get { return colors[index]; }
+            set { colors[index] = value; CallInvalidate(); }
         }
     }
 }

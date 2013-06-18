@@ -16,6 +16,8 @@ namespace AnimalCrossingQR
             InitializeComponent();
         }
 
+        public PaletteList Items { get { return paletteControl.Items; } }
+
         private Brush[] oppositePaletteBrushes;
         private Brush[] paletteBrushes;
         private string[] paletteLabels;

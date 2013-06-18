@@ -50,8 +50,17 @@ namespace AnimalCrossingQR
 
         private void blankToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void editColorsButton_Click(object sender, EventArgs e)
+        {
             ColorDialog colorDialog = new ColorDialog();
-            colorDialog.ShowDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                for (int i = 0; i < paletteControl.Items.Length; i++)
+                    paletteControl.Items[i] = colorDialog.Items[i];
+            }
         }
     }
 }
