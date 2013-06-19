@@ -50,6 +50,19 @@ namespace AnimalCrossingQR.AC
         {
             Title = "Untitled";
             Author = new User("Someone", "Nowhere", new byte[] { 0, 0, 0, 0, 0, 0 });
+
+            Color[,] sourceImage = new Color[Width, Height];
+            for (int i = 0; i < Width; i++)
+                for (int j = 0; j < Height; j++)
+                    sourceImage[i, j] = new Color(data[(j * Height + i) * 3 + 0], data[(j * Height + i) * 3 + 1], data[(j * Height + i) * 3 + 2]);
+
+            ColorPalette = new Palette();
+
+            for (int i = 0; i < Width; i++)
+                for (int j = 0; j < Height; j++)
+                {
+
+                }
         }
 
         private void LoadFromBytes(byte[] data)

@@ -5,13 +5,14 @@ using System.Text;
 
 namespace AnimalCrossingQR.AC
 {
-    public class Color
+    public struct Color
     {
         public byte Red { get; set; }
         public byte Green { get; set; }
         public byte Blue { get; set; }
 
         public Color(byte red, byte green, byte blue)
+            : this()
         {
             Red = red;
             Green = green;
@@ -28,6 +29,22 @@ namespace AnimalCrossingQR.AC
         public static double Distance(Color a, Color b)
         {
             return Math.Sqrt(DistanceSquared(a, b));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Color))
+                return false;
+
+            Color b = (Color)obj;
+            return this.Red == b.Red &&
+                this.Blue == b.Blue &&
+                this.Green == b.Green;
+        }
+
+        public override int GetHashCode()
+        {
+            return Red + (Green << 8) + (Blue << 16);
         }
     }
 }
