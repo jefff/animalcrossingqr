@@ -54,15 +54,61 @@ namespace AnimalCrossingQR.AC
             Color[,] sourceImage = new Color[Width, Height];
             for (int i = 0; i < Width; i++)
                 for (int j = 0; j < Height; j++)
-                    sourceImage[i, j] = new Color(data[(j * Height + i) * 3 + 0], data[(j * Height + i) * 3 + 1], data[(j * Height + i) * 3 + 2]);
+                    sourceImage[i, j] = new Color(data[(j * Height + i) * 3 + 2], data[(j * Height + i) * 3 + 1], data[(j * Height + i) * 3 + 0]);
 
+            HashSet<Color> bestPalette = CreateBestPalette(sourceImage);
             ColorPalette = new Palette();
+            int k = 0;
+            foreach (Color c in bestPalette)
+                ColorPalette.SetColor(k++, c);
 
             for (int i = 0; i < Width; i++)
                 for (int j = 0; j < Height; j++)
-                {
+                    Data[i, j] = ColorPalette.GetNearestColorIndex(sourceImage[i, j]);
+        }
 
+        private HashSet<Color> CreateBestPalette(Color[,] image)
+        {
+            HashSet<Color> palette = new HashSet<Color>(image.Cast<Color>().Select(Palette.GetNearestColor));
+
+            while (palette.Count > 15)
+                palette.Remove(CalculateLeastImportantColor(image, palette));
+
+            return palette;
+        }
+
+        private Color GetNearestColor(HashSet<Color> palette, Color color)
+        {
+            return palette
+                .Aggregate((a, b) => Color.DistanceSquared(a, color) < Color.DistanceSquared(b, color) ? a : b);
+        }
+        
+        private Color GetSecondNearestColor(HashSet<Color> palette, Color color)
+        {
+            Color nearestColor = GetNearestColor(palette, color);
+            return palette
+                .Where(c => c != nearestColor)
+                .Aggregate((a, b) => Color.DistanceSquared(a, color) < Color.DistanceSquared(b, color) ? a : b);
+        }
+
+        private Color CalculateLeastImportantColor(Color[,] image, HashSet<Color> palette)
+        {
+            Dictionary<Color, double> colorErrorSquaredDelta = new Dictionary<Color, double>();
+            foreach (Color c in palette)
+                colorErrorSquaredDelta.Add(c, 0);
+            
+            for (int i = 0; i < image.GetLength(0); i++)
+                for (int j = 0; j < image.GetLength(1); j++)
+                {
+                    Color nearestColor = GetNearestColor(palette, image[i, j]);
+
+                    double currentError = Color.DistanceSquared(image[i, j], nearestColor);
+                    double potentialError = Color.DistanceSquared(image[i, j], GetSecondNearestColor(palette, image[i, j]));
+
+                    colorErrorSquaredDelta[nearestColor] += (potentialError - currentError);
                 }
+
+            return colorErrorSquaredDelta.Aggregate((a, b) => (a.Value < b.Value) ? a : b).Key;
         }
 
         private void LoadFromBytes(byte[] data)

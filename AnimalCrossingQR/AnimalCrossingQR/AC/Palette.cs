@@ -191,14 +191,35 @@ namespace AnimalCrossingQR.AC
             return GetColorByCode(Colors[index]);
         }
 
+        public void SetColor(int index, Color color)
+        {
+            Colors[index] = GetNearestColorCode(color);
+        }
+
         public static Color GetColorByCode(byte code)
         {
             return ColorPalette[GetColorIndexByCode(code)];
         }
 
-        public static Color GetNearestColorCode(Color color)
+        public byte GetNearestColorIndex(Color color)
+        {
+            return Colors
+                .Select((c, i) => Tuple.Create(GetColorByCode(c), (byte)i))
+                .Aggregate((a, b) => Color.DistanceSquared(a.Item1, color) < Color.DistanceSquared(b.Item1, color) ? a : b)
+                .Item2;
+        }
+
+        public static Color GetNearestColor(Color color)
         {
             return ColorPalette.Aggregate((a, b) => Color.DistanceSquared(a, color) < Color.DistanceSquared(b, color) ? a : b);
+        }
+
+        public static byte GetNearestColorCode(Color color)
+        {
+            return GetColorCode(ColorPalette
+                .Select(Tuple.Create<Color, int>)
+                .Aggregate((a, b) => Color.DistanceSquared(a.Item1, color) < Color.DistanceSquared(b.Item1, color) ? a : b)
+                .Item2);
         }
 
         private static byte GetColorCode(int index)

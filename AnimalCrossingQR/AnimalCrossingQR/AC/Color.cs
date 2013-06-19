@@ -31,6 +31,16 @@ namespace AnimalCrossingQR.AC
             return Math.Sqrt(DistanceSquared(a, b));
         }
 
+        public static bool operator ==(Color a, Color b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Color a, Color b)
+        {
+            return !(a == b);
+        }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Color))
