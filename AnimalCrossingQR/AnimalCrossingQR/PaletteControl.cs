@@ -27,7 +27,7 @@ namespace AnimalCrossingQR
         {
             Items = new PaletteList(15, Invalidate);
 
-            paletteBrushes = Palette.ColorPalette
+            paletteBrushes = AC.Palette.ColorPalette
                 .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(c.Red, c.Green, c.Blue)))
                 .ToArray();
 

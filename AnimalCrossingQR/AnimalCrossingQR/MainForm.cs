@@ -21,19 +21,19 @@ namespace AnimalCrossingQR
         {
         }
 
-        private System.Drawing.Color FromPaletteColor(Color color)
+        private Color FromPaletteColor(AC.Color color)
         {
-            return System.Drawing.Color.FromArgb(color.Red, color.Green, color.Blue);
+            return Color.FromArgb(color.Red, color.Green, color.Blue);
         }
 
-        private Image RenderPattern(Pattern pattern, int scale)
+        private Image RenderPattern(AC.Pattern pattern, int scale)
         {
-            Bitmap bitmap = new Bitmap(Pattern.Width * scale, Pattern.Height * scale);
-            
-            for (int i = 0; i < Pattern.Width; i++)
-                for (int j = 0; j < Pattern.Height; j++)
+            Bitmap bitmap = new Bitmap(AC.Pattern.Width * scale, AC.Pattern.Height * scale);
+
+            for (int i = 0; i < AC.Pattern.Width; i++)
+                for (int j = 0; j < AC.Pattern.Height; j++)
                 {
-                    Color c = pattern.GetPixel(i, j);
+                    AC.Color c = pattern.GetPixel(i, j);
 
                     for (int x = 0; x < scale; x++)
                         for (int y = 0; y < scale; y++)
@@ -84,12 +84,12 @@ namespace AnimalCrossingQR
 
             if (result != null)
             {
-                Pattern pattern = new Pattern(result.RawBytes);
+                AC.Pattern pattern = new AC.Pattern(result.RawBytes);
                 LoadPattern(pattern);
             }
         }
 
-        private void LoadPattern(Pattern pattern)
+        private void LoadPattern(AC.Pattern pattern)
         {
             titleText.Text = pattern.Title;
             authorNameText.Text = pattern.Author.Name;
@@ -97,7 +97,7 @@ namespace AnimalCrossingQR
             authorUniqueIDText.Text = string.Join(":", pattern.Author.UniqueID.Select(b => b.ToString("X2")));
 
             for (int i = 0; i < pattern.ColorPalette.Colors.Length; i++)
-                paletteControl.Items[i] = Palette.GetColorIndexByCode(pattern.ColorPalette.Colors[i]);
+                paletteControl.Items[i] = AC.Palette.GetColorIndexByCode(pattern.ColorPalette.Colors[i]);
 
             patternPanel.BackgroundImageLayout = ImageLayout.None;
             patternPanel.BackgroundImage = RenderPattern(pattern, 8);

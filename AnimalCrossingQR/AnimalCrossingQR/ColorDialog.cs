@@ -49,15 +49,15 @@ namespace AnimalCrossingQR
                 Alignment = StringAlignment.Center,
             };
 
-            paletteBrushes = Palette.ColorPalette
+            paletteBrushes = AC.Palette.ColorPalette
                 .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(c.Red, c.Green, c.Blue)))
                 .ToArray();
 
-            oppositePaletteBrushes = Palette.ColorPalette
+            oppositePaletteBrushes = AC.Palette.ColorPalette
                 .Select(c => (c.Red * 0.2126) + (c.Green * 0.7152) + (c.Blue * 0.0722) > 128 ? Brushes.Black : Brushes.White)
                 .ToArray();
 
-            paletteLabels = new string[Palette.ColorPalette.Length];
+            paletteLabels = new string[AC.Palette.ColorPalette.Length];
         }
 
         private void DrawFullColorPalette(Graphics graphics)

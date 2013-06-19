@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AnimalCrossingQR
+namespace AnimalCrossingQR.AC
 {
     public class User
     {
