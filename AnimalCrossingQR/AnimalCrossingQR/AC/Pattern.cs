@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace AnimalCrossingQR.AC
@@ -28,6 +31,25 @@ namespace AnimalCrossingQR.AC
             : this()
         {
             LoadFromBytes(rawData);
+        }
+
+        public Pattern(Image image)
+            : this()
+        {
+            Bitmap resizedImage = new Bitmap(image, new Size(Width, Height));
+
+            BitmapData bitmapData = resizedImage.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+            byte[] imagePixelData = new byte[Math.Abs(bitmapData.Stride) * bitmapData.Height];
+            Marshal.Copy(bitmapData.Scan0, imagePixelData, 0, imagePixelData.Length);
+            resizedImage.UnlockBits(bitmapData);
+
+            LoadFromPixelData(imagePixelData);
+        }
+
+        private void LoadFromPixelData(byte[] data)
+        {
+            Title = "Untitled";
+            Author = new User("Someone", "Nowhere", new byte[] { 0, 0, 0, 0, 0, 0 });
         }
 
         private void LoadFromBytes(byte[] data)

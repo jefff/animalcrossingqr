@@ -48,6 +48,7 @@
             this.authorUniqueIDLabel = new System.Windows.Forms.Label();
             this.authorUniqueIDText = new System.Windows.Forms.MaskedTextBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
+            this.imageOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,28 +79,29 @@
             this.blankToolStripMenuItem,
             this.fromImageToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
             // 
             this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
-            this.blankToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.blankToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.blankToolStripMenuItem.Text = "Blank";
             this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
             // 
             // fromImageToolStripMenuItem
             // 
             this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
-            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.fromImageToolStripMenuItem.Text = "From Image...";
+            this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
             // 
             // openPatternToolStripMenuItem
             // 
             this.openPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromQRCodeToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -112,12 +114,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -214,11 +216,16 @@
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
             // 
+            // imageOpenFileDialog
+            // 
+            this.imageOpenFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*" +
+    ".*";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 472);
+            this.ClientSize = new System.Drawing.Size(847, 475);
             this.Controls.Add(this.authorUniqueIDText);
             this.Controls.Add(this.authorUniqueIDLabel);
             this.Controls.Add(this.authorTownLabel);
@@ -264,6 +271,7 @@
         private System.Windows.Forms.TextBox authorTownText;
         private System.Windows.Forms.Label authorUniqueIDLabel;
         private System.Windows.Forms.MaskedTextBox authorUniqueIDText;
+        private System.Windows.Forms.OpenFileDialog imageOpenFileDialog;
 
     }
 }

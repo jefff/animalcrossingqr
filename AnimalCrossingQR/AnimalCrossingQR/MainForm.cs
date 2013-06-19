@@ -53,6 +53,22 @@ namespace AnimalCrossingQR
 
         }
 
+        private void fromImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (imageOpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open);
+                Image image = Image.FromStream(fileStream);
+                fileStream.Close();
+
+                ImageSelectDialog imageSelectDialog = new ImageSelectDialog(image);
+                if (imageSelectDialog.ShowDialog() == DialogResult.OK)
+                {
+                    LoadPattern(new AC.Pattern(image));
+                }
+            }
+        }
+
         private void editColorsButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog(paletteControl.Items);
@@ -65,11 +81,9 @@ namespace AnimalCrossingQR
 
         private void fromQRCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (imageOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                FileStream fileStream = new FileStream(ofd.FileName, FileMode.Open);
+                FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open);
                 Bitmap bitmap = (Bitmap)Bitmap.FromStream(fileStream);
                 fileStream.Close();
 
@@ -80,6 +94,7 @@ namespace AnimalCrossingQR
         private void LoadFromQR(Bitmap bitmap)
         {
             ZXing.BarcodeReader reader = new ZXing.BarcodeReader();
+            reader.PossibleFormats = new[] { ZXing.BarcodeFormat.QR_CODE };
             ZXing.Result result = reader.Decode(bitmap);
 
             if (result != null)
