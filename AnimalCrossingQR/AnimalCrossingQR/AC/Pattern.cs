@@ -151,6 +151,11 @@ namespace AnimalCrossingQR.AC
                 }
         }
 
+        private byte[] GetRawData()
+        {
+            return null;
+        }
+
         public Color GetPixel(int x, int y)
         {
             return ColorPalette.GetColor(Data[x, y]);
