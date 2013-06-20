@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,8 +49,12 @@
             this.authorUniqueIDLabel = new System.Windows.Forms.Label();
             this.authorUniqueIDText = new System.Windows.Forms.MaskedTextBox();
             this.imageOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.setDefaultButton = new System.Windows.Forms.Button();
+            this.loadDefaultButton = new System.Windows.Forms.Button();
+            this.helpBox = new System.Windows.Forms.PictureBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -147,6 +152,7 @@
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(197, 20);
             this.titleText.TabIndex = 4;
+            this.titleText.Text = "Untitled";
             // 
             // titleLabel
             // 
@@ -204,13 +210,43 @@
             this.authorUniqueIDText.Mask = ">AA:AA:AA:AA:AA:AA";
             this.authorUniqueIDText.Name = "authorUniqueIDText";
             this.authorUniqueIDText.PromptChar = ' ';
-            this.authorUniqueIDText.Size = new System.Drawing.Size(197, 20);
+            this.authorUniqueIDText.Size = new System.Drawing.Size(171, 20);
             this.authorUniqueIDText.TabIndex = 12;
             // 
             // imageOpenFileDialog
             // 
             this.imageOpenFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*" +
     ".*";
+            // 
+            // setDefaultButton
+            // 
+            this.setDefaultButton.Location = new System.Drawing.Point(639, 212);
+            this.setDefaultButton.Name = "setDefaultButton";
+            this.setDefaultButton.Size = new System.Drawing.Size(89, 29);
+            this.setDefaultButton.TabIndex = 13;
+            this.setDefaultButton.Text = "Set as default";
+            this.setDefaultButton.UseVisualStyleBackColor = true;
+            this.setDefaultButton.Click += new System.EventHandler(this.setDefaultButton_Click);
+            // 
+            // loadDefaultButton
+            // 
+            this.loadDefaultButton.Location = new System.Drawing.Point(734, 212);
+            this.loadDefaultButton.Name = "loadDefaultButton";
+            this.loadDefaultButton.Size = new System.Drawing.Size(87, 29);
+            this.loadDefaultButton.TabIndex = 14;
+            this.loadDefaultButton.Text = "Load default";
+            this.loadDefaultButton.UseVisualStyleBackColor = true;
+            this.loadDefaultButton.Click += new System.EventHandler(this.loadDefaultButton_Click);
+            // 
+            // helpBox
+            // 
+            this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
+            this.helpBox.Location = new System.Drawing.Point(809, 186);
+            this.helpBox.Name = "helpBox";
+            this.helpBox.Size = new System.Drawing.Size(20, 20);
+            this.helpBox.TabIndex = 15;
+            this.helpBox.TabStop = false;
+            this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
             // 
             // paletteControl
             // 
@@ -226,6 +262,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 559);
+            this.Controls.Add(this.helpBox);
+            this.Controls.Add(this.loadDefaultButton);
+            this.Controls.Add(this.setDefaultButton);
             this.Controls.Add(this.authorUniqueIDText);
             this.Controls.Add(this.authorUniqueIDLabel);
             this.Controls.Add(this.authorTownLabel);
@@ -244,6 +283,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,6 +312,9 @@
         private System.Windows.Forms.Label authorUniqueIDLabel;
         private System.Windows.Forms.MaskedTextBox authorUniqueIDText;
         private System.Windows.Forms.OpenFileDialog imageOpenFileDialog;
+        private System.Windows.Forms.Button setDefaultButton;
+        private System.Windows.Forms.Button loadDefaultButton;
+        private System.Windows.Forms.PictureBox helpBox;
 
     }
 }

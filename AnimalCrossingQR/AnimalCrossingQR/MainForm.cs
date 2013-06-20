@@ -7,18 +7,41 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AnimalCrossingQR.Properties;
 
 namespace AnimalCrossingQR
 {
     public partial class MainForm : Form
     {
+        private const string SetDefaultMessage = "Do you want to make the current author the default?";
+        private const string UniqueIDHelpMessage = "To be considered the 'owner' of a particular pattern (and for it" +
+            " to be editable in game), your name, town name and unique ID must match. The easiest way to determine" +
+            " your unique ID is to open a QR code of a pattern you created. After doing so, press 'Save as default'" +
+            " so that you can use it for other patterns and gain in-game ownership.";
+
         public MainForm()
         {
             InitializeComponent();
+            LoadSettings();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+        }
+
+        private void LoadSettings()
+        {
+            authorNameText.Text = Settings.Default["AuthorName"].ToString();
+            authorTownText.Text = Settings.Default["AuthorTown"].ToString();
+            authorUniqueIDText.Text = Settings.Default["AuthorUniqueID"].ToString();
+        }
+
+        private void SaveSettings()
+        {
+            Settings.Default["AuthorName"] = authorNameText.Text;
+            Settings.Default["AuthorTown"] = authorTownText.Text;
+            Settings.Default["AuthorUniqueID"] = authorUniqueIDText.Text;
+            Settings.Default.Save();
         }
 
         private Color FromPaletteColor(AC.Color color)
@@ -120,6 +143,23 @@ namespace AnimalCrossingQR
 
             patternPanel.BackgroundImageLayout = ImageLayout.None;
             patternPanel.BackgroundImage = RenderPattern(pattern, 8);
+        }
+
+        private void loadDefaultButton_Click(object sender, EventArgs e)
+        {
+            LoadSettings();
+        }
+
+        private void setDefaultButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(SetDefaultMessage, Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                SaveSettings();
+        }
+
+        private void helpBox_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
         }
     }
 }
