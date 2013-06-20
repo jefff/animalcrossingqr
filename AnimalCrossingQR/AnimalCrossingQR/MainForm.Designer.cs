@@ -52,8 +52,9 @@
             this.setDefaultButton = new System.Windows.Forms.Button();
             this.loadDefaultButton = new System.Windows.Forms.Button();
             this.helpBox = new System.Windows.Forms.PictureBox();
-            this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.createQRButton = new System.Windows.Forms.Button();
+            this.paletteControl = new AnimalCrossingQR.PaletteControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.SuspendLayout();
@@ -249,15 +250,6 @@
             this.helpBox.TabStop = false;
             this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
             // 
-            // paletteControl
-            // 
-            this.paletteControl.Location = new System.Drawing.Point(12, 27);
-            this.paletteControl.Name = "paletteControl";
-            this.paletteControl.SelectedIndex = -1;
-            this.paletteControl.SelectedItem = -1;
-            this.paletteControl.Size = new System.Drawing.Size(77, 308);
-            this.paletteControl.TabIndex = 2;
-            // 
             // createQRButton
             // 
             this.createQRButton.Location = new System.Drawing.Point(672, 275);
@@ -268,11 +260,31 @@
             this.createQRButton.UseVisualStyleBackColor = true;
             this.createQRButton.Click += new System.EventHandler(this.createQRButton_Click);
             // 
+            // paletteControl
+            // 
+            this.paletteControl.Location = new System.Drawing.Point(12, 27);
+            this.paletteControl.Name = "paletteControl";
+            this.paletteControl.SelectedIndex = -1;
+            this.paletteControl.SelectedItem = -1;
+            this.paletteControl.Size = new System.Drawing.Size(77, 308);
+            this.paletteControl.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(681, 343);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 40);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 559);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.createQRButton);
             this.Controls.Add(this.helpBox);
             this.Controls.Add(this.loadDefaultButton);
@@ -328,6 +340,7 @@
         private System.Windows.Forms.Button loadDefaultButton;
         private System.Windows.Forms.PictureBox helpBox;
         private System.Windows.Forms.Button createQRButton;
+        private System.Windows.Forms.Button button1;
 
     }
 }

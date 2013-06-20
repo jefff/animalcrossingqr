@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -36,7 +37,14 @@ namespace AnimalCrossingQR.AC
         public Pattern(Image image)
             : this()
         {
-            Bitmap resizedImage = new Bitmap(image, new Size(Width, Height));
+            Bitmap resizedImage = new Bitmap(Width, Height);
+            using (Graphics gr = Graphics.FromImage(resizedImage))
+            {
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, Width, Height));
+            }
 
             BitmapData bitmapData = resizedImage.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
             byte[] imagePixelData = new byte[Math.Abs(bitmapData.Stride) * bitmapData.Height];

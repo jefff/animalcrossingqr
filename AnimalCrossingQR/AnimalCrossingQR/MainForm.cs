@@ -17,7 +17,7 @@ namespace AnimalCrossingQR
         private const string UniqueIDHelpMessage = "To be considered the 'owner' of a particular pattern (and for it" +
             " to be editable in game), your name, town name and unique ID must match. The easiest way to determine" +
             " your unique ID is to open a QR code of a pattern you created. After doing so, press 'Save as default'" +
-            " so that you can use it for other patterns and gain in-game ownership.";
+            " so that you can use it for other patterns and gain in-game ownership of any QR codes you create.";
 
         public MainForm()
         {
@@ -165,6 +165,24 @@ namespace AnimalCrossingQR
         {
             QRDialog qrDialog = new QRDialog(lastPattern);
             qrDialog.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (imageOpenFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Bitmap bitmap = (Bitmap)Bitmap.FromFile(imageOpenFileDialog.FileName);
+
+                for (int i = 0; i < bitmap.Width; i++)
+                    for (int j = 0; j < bitmap.Height; j++)
+                    {
+                        Color c = bitmap.GetPixel(i, j);
+                        AC.Color nc = AC.Palette.GetNearestColor(new AC.Color(c.R, c.G, c.B));
+                        bitmap.SetPixel(i, j, Color.FromArgb(nc.Red, nc.Green, nc.Blue));
+                    }
+
+                bitmap.Save(imageOpenFileDialog.FileName + ".png");
+            }
         }
     }
 }
