@@ -171,12 +171,15 @@ namespace AnimalCrossingQR.AC
             new Color(0, 0, 0)
         };
         #endregion
+        
+        public static readonly byte[] DefaultColorCodes = new byte[] { 52, 36, 20, 116, 180, 164, 212, 196, 148, 65, 68, 100, 15, 127, 239 };
 
         public byte[] Colors { get; set; }
 
         public Palette()
         {
-            Colors = new byte[] { 52, 36, 20, 116, 180, 164, 212, 196, 148, 65, 68, 100, 15, 127, 239 };
+            Colors = new byte[15];
+            Array.Copy(DefaultColorCodes, Colors, 15); 
         }
 
         public Palette(NibbleReader nibbleReader)

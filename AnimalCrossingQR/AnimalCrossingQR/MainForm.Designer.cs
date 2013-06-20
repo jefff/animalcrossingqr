@@ -216,8 +216,8 @@
             // 
             this.paletteControl.Location = new System.Drawing.Point(12, 27);
             this.paletteControl.Name = "paletteControl";
-            this.paletteControl.SelectedIndex = 0;
-            this.paletteControl.SelectedItem = 0;
+            this.paletteControl.SelectedIndex = -1;
+            this.paletteControl.SelectedItem = -1;
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
             // 

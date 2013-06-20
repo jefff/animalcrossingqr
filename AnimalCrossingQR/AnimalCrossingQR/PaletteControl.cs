@@ -25,7 +25,11 @@ namespace AnimalCrossingQR
 
         public PaletteControl()
         {
+            SelectedIndex = -1;
+
             Items = new PaletteList(15, Invalidate);
+            for (int i = 0; i < Items.Length; i++)
+                Items[i] = AC.Palette.GetColorIndexByCode(AC.Palette.DefaultColorCodes[i]);
 
             paletteBrushes = AC.Palette.ColorPalette
                 .Select(c => new SolidBrush(System.Drawing.Color.FromArgb(c.Red, c.Green, c.Blue)))
@@ -56,11 +60,18 @@ namespace AnimalCrossingQR
         private Action invalidate;
 
         public int Length { get { return colors.Length; } }
-
+               
         public PaletteList(int size, Action invalidate = null)
         {
             colors = new int[size];
             this.invalidate = invalidate;
+        }
+
+        public PaletteList(int[] initial, Action invalidate = null)
+            : this(initial.Length, invalidate)
+        {
+            for (int i = 0; i < initial.Length; i++)
+                colors[i] = initial[i];
         }
 
         private void CallInvalidate()
