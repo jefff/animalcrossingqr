@@ -39,12 +39,13 @@
             this.qrBox.Location = new System.Drawing.Point(12, 12);
             this.qrBox.Name = "qrBox";
             this.qrBox.Size = new System.Drawing.Size(400, 400);
+            this.qrBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.qrBox.TabIndex = 0;
             this.qrBox.TabStop = false;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(55, 433);
+            this.saveButton.Location = new System.Drawing.Point(436, 48);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(129, 33);
             this.saveButton.TabIndex = 1;
@@ -55,7 +56,7 @@
             // closeButton
             // 
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(241, 433);
+            this.closeButton.Location = new System.Drawing.Point(436, 350);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(129, 33);
             this.closeButton.TabIndex = 2;
@@ -69,7 +70,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(424, 488);
+            this.ClientSize = new System.Drawing.Size(586, 426);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.qrBox);

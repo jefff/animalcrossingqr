@@ -17,7 +17,7 @@ namespace AnimalCrossingQR
         public QRDialog(AC.Pattern pattern)
         {
             this.pattern = pattern;
-            qrImage = CreateQRCode(pattern);            
+            qrImage = CreateQRCode(pattern, 3);            
 
             InitializeComponent();
         }
@@ -27,10 +27,8 @@ namespace AnimalCrossingQR
             qrBox.Image = qrImage;
         }
 
-        private Image CreateQRCode(AC.Pattern pattern)
+        private Image CreateQRCode(AC.Pattern pattern, int scale)
         {
-            const int scale = 4;
-
             ZXing.BarcodeWriter writer = new ZXing.BarcodeWriter();
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
 
@@ -59,8 +57,47 @@ namespace AnimalCrossingQR
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Image outputImage = new Bitmap(400, 240);
+                using (Graphics graphics = Graphics.FromImage(outputImage))
+                {
+                    graphics.Clear(Color.White);
 
+                    StringFormat sf = new StringFormat();
+                    sf.LineAlignment = StringAlignment.Center;
+                    sf.Alignment = StringAlignment.Center;
+                    Font font = new System.Drawing.Font("Arial", 18, FontStyle.Regular);
+                    graphics.DrawString(pattern.Title, font, Brushes.Black, 195, 18, sf);
+
+                    graphics.DrawImage(CreateQRCode(pattern, 2), new Point(187, 35));
+
+                    graphics.DrawImage(RenderPattern(pattern, 4), 37, 69);
+                }
+
+                outputImage.Save(sfd.FileName);
             }
+        }
+
+
+        private Image RenderPattern(AC.Pattern pattern, int scale)
+        {
+            Bitmap bitmap = new Bitmap(AC.Pattern.Width * scale, AC.Pattern.Height * scale);
+
+            for (int i = 0; i < AC.Pattern.Width; i++)
+                for (int j = 0; j < AC.Pattern.Height; j++)
+                {
+                    AC.Color c = pattern.GetPixel(i, j);
+
+                    for (int x = 0; x < scale; x++)
+                        for (int y = 0; y < scale; y++)
+                            bitmap.SetPixel(scale * i + x, scale * j + y, FromPaletteColor(c));
+                }
+
+            return bitmap;
+        }
+
+        private Color FromPaletteColor(AC.Color color)
+        {
+            return Color.FromArgb(color.Red, color.Green, color.Blue);
         }
 
         private void closeButton_Click(object sender, EventArgs e)
