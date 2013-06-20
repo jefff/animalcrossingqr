@@ -31,5 +31,17 @@ namespace AnimalCrossingQR.AC
             UniqueID[4] = nibbleReader.ReadByte();
             UniqueID[5] = nibbleReader.ReadByte();
         }
+
+        public void Write(NibbleWriter nibbleWriter)
+        {
+            nibbleWriter.WriteByte(UniqueID[0]);
+            nibbleWriter.WriteByte(UniqueID[1]);
+            nibbleWriter.WriteString(Name, 20);
+            nibbleWriter.WriteByte(UniqueID[2]);
+            nibbleWriter.WriteByte(UniqueID[3]);
+            nibbleWriter.WriteString(Town, 20);
+            nibbleWriter.WriteByte(UniqueID[4]);
+            nibbleWriter.WriteByte(UniqueID[5]);
+        }
     }
 }

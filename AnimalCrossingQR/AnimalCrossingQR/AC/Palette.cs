@@ -186,6 +186,12 @@ namespace AnimalCrossingQR.AC
                 Colors[i] = nibbleReader.ReadByte();
         }
 
+        public void Write(NibbleWriter nibbleWriter)
+        {
+            foreach (byte b in Colors)
+                nibbleWriter.WriteByte(b);
+        }
+
         public Color GetColor(int index)
         {
             return GetColorByCode(Colors[index]);

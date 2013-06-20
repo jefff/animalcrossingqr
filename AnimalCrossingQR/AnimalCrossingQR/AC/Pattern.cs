@@ -50,6 +50,7 @@ namespace AnimalCrossingQR.AC
         {
             Title = "Untitled";
             Author = new User("Someone", "Nowhere", new byte[] { 0, 0, 0, 0, 0, 0 });
+            Type = PatternType.Normal;
 
             Color[,] sourceImage = new Color[Width, Height];
             for (int i = 0; i < Width; i++)
@@ -151,9 +152,44 @@ namespace AnimalCrossingQR.AC
                 }
         }
 
-        private byte[] GetRawData()
+        public byte[] GetRawData()
         {
-            return null;
+            MemoryStream memoryStream = new MemoryStream();
+            BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
+            NibbleWriter nibbleWriter = new NibbleWriter(binaryWriter);
+
+            //nibbleWriter.WriteByte(0x40);
+
+           // nibbleWriter.WriteByte(0x26);
+            //nibbleWriter.WriteNibble(0xC);
+            
+            nibbleWriter.WriteString(Title, 42);
+            Author.Write(nibbleWriter);
+
+            ColorPalette.Write(nibbleWriter);
+
+            nibbleWriter.WriteByte(0x00);
+            nibbleWriter.WriteByte(0x0A);
+            nibbleWriter.WriteByte((byte)Type);
+            nibbleWriter.WriteByte(0x00);
+            nibbleWriter.WriteByte(0x00);
+
+            for (int j = 0; j < Data.GetLength(1); j++)
+                for (int i = 0; i < Data.GetLength(0); i += 2)
+                {
+                    nibbleWriter.WriteNibble(Data[i + 1, j]);
+                    nibbleWriter.WriteNibble(Data[i, j]);
+                }
+            //nibbleWriter.WriteNibble(0x0);
+            /*nibbleWriter.WriteByte(0xEC);
+            nibbleWriter.WriteByte(0x11);
+            nibbleWriter.WriteByte(0xEC);
+            nibbleWriter.WriteByte(0x11);*/
+
+            byte[] result = memoryStream.ToArray();
+            memoryStream.Close();
+
+            return result;
         }
 
         public Color GetPixel(int x, int y)

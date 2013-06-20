@@ -104,8 +104,12 @@ namespace AnimalCrossingQR
             }
         }
 
+        private AC.Pattern lastPattern;
+
         private void LoadPattern(AC.Pattern pattern)
         {
+            lastPattern = pattern;
+
             titleText.Text = pattern.Title;
             authorNameText.Text = pattern.Author.Name;
             authorTownText.Text = pattern.Author.Town;
