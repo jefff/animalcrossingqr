@@ -53,6 +53,7 @@
             this.loadDefaultButton = new System.Windows.Forms.Button();
             this.helpBox = new System.Windows.Forms.PictureBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
+            this.createQRButton = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.SuspendLayout();
@@ -257,11 +258,22 @@
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
             // 
+            // createQRButton
+            // 
+            this.createQRButton.Location = new System.Drawing.Point(672, 275);
+            this.createQRButton.Name = "createQRButton";
+            this.createQRButton.Size = new System.Drawing.Size(116, 29);
+            this.createQRButton.TabIndex = 16;
+            this.createQRButton.Text = "Create QR Code";
+            this.createQRButton.UseVisualStyleBackColor = true;
+            this.createQRButton.Click += new System.EventHandler(this.createQRButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 559);
+            this.Controls.Add(this.createQRButton);
             this.Controls.Add(this.helpBox);
             this.Controls.Add(this.loadDefaultButton);
             this.Controls.Add(this.setDefaultButton);
@@ -315,6 +327,7 @@
         private System.Windows.Forms.Button setDefaultButton;
         private System.Windows.Forms.Button loadDefaultButton;
         private System.Windows.Forms.PictureBox helpBox;
+        private System.Windows.Forms.Button createQRButton;
 
     }
 }

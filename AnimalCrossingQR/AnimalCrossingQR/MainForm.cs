@@ -158,8 +158,13 @@ namespace AnimalCrossingQR
 
         private void helpBox_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
- 
+            MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information); 
+        }
+
+        private void createQRButton_Click(object sender, EventArgs e)
+        {
+            QRDialog qrDialog = new QRDialog(lastPattern);
+            qrDialog.ShowDialog();
         }
     }
 }
