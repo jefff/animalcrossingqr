@@ -74,7 +74,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.qrBox);
             this.Name = "QRDialog";
-            this.Text = "QRDialog";
+            this.Text = "QR Code";
             this.Load += new System.EventHandler(this.QRDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.qrBox)).EndInit();
             this.ResumeLayout(false);

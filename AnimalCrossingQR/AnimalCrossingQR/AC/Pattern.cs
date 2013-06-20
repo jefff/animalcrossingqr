@@ -28,12 +28,6 @@ namespace AnimalCrossingQR.AC
             Data = new byte[Width, Height];
         }
 
-        public Pattern(byte[] rawData)
-            : this()
-        {
-            LoadFromBytes(rawData);
-        }
-
         public Pattern(Image image)
             : this()
         {
@@ -52,6 +46,14 @@ namespace AnimalCrossingQR.AC
             resizedImage.UnlockBits(bitmapData);
 
             LoadFromPixelData(imagePixelData);
+        }
+
+        public static Pattern CreateFromRawData(byte[] data)
+        {
+            Pattern pattern = new Pattern();
+            pattern.LoadFromBytes(data);
+
+            return pattern;
         }
 
         private void LoadFromPixelData(byte[] data)

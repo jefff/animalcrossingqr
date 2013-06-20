@@ -53,8 +53,8 @@
             this.loadDefaultButton = new System.Windows.Forms.Button();
             this.helpBox = new System.Windows.Forms.PictureBox();
             this.createQRButton = new System.Windows.Forms.Button();
-            this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.button1 = new System.Windows.Forms.Button();
+            this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(847, 24);
+            this.menuStrip.Size = new System.Drawing.Size(615, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -94,6 +94,7 @@
             this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
             this.blankToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.blankToolStripMenuItem.Text = "Blank";
+            this.blankToolStripMenuItem.Visible = false;
             this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
             // 
             // fromImageToolStripMenuItem
@@ -134,7 +135,7 @@
             // 
             this.patternPanel.Location = new System.Drawing.Point(95, 27);
             this.patternPanel.Name = "patternPanel";
-            this.patternPanel.Size = new System.Drawing.Size(512, 512);
+            this.patternPanel.Size = new System.Drawing.Size(294, 344);
             this.patternPanel.TabIndex = 1;
             // 
             // editColorsButton
@@ -150,7 +151,7 @@
             // titleText
             // 
             this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.titleText.Location = new System.Drawing.Point(632, 57);
+            this.titleText.Location = new System.Drawing.Point(404, 52);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(197, 20);
             this.titleText.TabIndex = 4;
@@ -159,7 +160,7 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(629, 41);
+            this.titleLabel.Location = new System.Drawing.Point(401, 36);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 5;
@@ -168,7 +169,7 @@
             // authorNameLabel
             // 
             this.authorNameLabel.AutoSize = true;
-            this.authorNameLabel.Location = new System.Drawing.Point(629, 92);
+            this.authorNameLabel.Location = new System.Drawing.Point(401, 87);
             this.authorNameLabel.Name = "authorNameLabel";
             this.authorNameLabel.Size = new System.Drawing.Size(69, 13);
             this.authorNameLabel.TabIndex = 7;
@@ -176,7 +177,7 @@
             // 
             // authorNameText
             // 
-            this.authorNameText.Location = new System.Drawing.Point(632, 108);
+            this.authorNameText.Location = new System.Drawing.Point(404, 103);
             this.authorNameText.Name = "authorNameText";
             this.authorNameText.Size = new System.Drawing.Size(197, 20);
             this.authorNameText.TabIndex = 6;
@@ -184,7 +185,7 @@
             // authorTownLabel
             // 
             this.authorTownLabel.AutoSize = true;
-            this.authorTownLabel.Location = new System.Drawing.Point(629, 131);
+            this.authorTownLabel.Location = new System.Drawing.Point(401, 126);
             this.authorTownLabel.Name = "authorTownLabel";
             this.authorTownLabel.Size = new System.Drawing.Size(68, 13);
             this.authorTownLabel.TabIndex = 9;
@@ -192,7 +193,7 @@
             // 
             // authorTownText
             // 
-            this.authorTownText.Location = new System.Drawing.Point(632, 147);
+            this.authorTownText.Location = new System.Drawing.Point(404, 142);
             this.authorTownText.Name = "authorTownText";
             this.authorTownText.Size = new System.Drawing.Size(197, 20);
             this.authorTownText.TabIndex = 8;
@@ -200,7 +201,7 @@
             // authorUniqueIDLabel
             // 
             this.authorUniqueIDLabel.AutoSize = true;
-            this.authorUniqueIDLabel.Location = new System.Drawing.Point(629, 170);
+            this.authorUniqueIDLabel.Location = new System.Drawing.Point(401, 165);
             this.authorUniqueIDLabel.Name = "authorUniqueIDLabel";
             this.authorUniqueIDLabel.Size = new System.Drawing.Size(89, 13);
             this.authorUniqueIDLabel.TabIndex = 11;
@@ -208,7 +209,7 @@
             // 
             // authorUniqueIDText
             // 
-            this.authorUniqueIDText.Location = new System.Drawing.Point(632, 186);
+            this.authorUniqueIDText.Location = new System.Drawing.Point(404, 181);
             this.authorUniqueIDText.Mask = ">AA:AA:AA:AA:AA:AA";
             this.authorUniqueIDText.Name = "authorUniqueIDText";
             this.authorUniqueIDText.PromptChar = ' ';
@@ -222,7 +223,7 @@
             // 
             // setDefaultButton
             // 
-            this.setDefaultButton.Location = new System.Drawing.Point(639, 212);
+            this.setDefaultButton.Location = new System.Drawing.Point(411, 207);
             this.setDefaultButton.Name = "setDefaultButton";
             this.setDefaultButton.Size = new System.Drawing.Size(89, 29);
             this.setDefaultButton.TabIndex = 13;
@@ -232,7 +233,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(734, 212);
+            this.loadDefaultButton.Location = new System.Drawing.Point(506, 207);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(87, 29);
             this.loadDefaultButton.TabIndex = 14;
@@ -243,7 +244,7 @@
             // helpBox
             // 
             this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
-            this.helpBox.Location = new System.Drawing.Point(809, 186);
+            this.helpBox.Location = new System.Drawing.Point(581, 181);
             this.helpBox.Name = "helpBox";
             this.helpBox.Size = new System.Drawing.Size(20, 20);
             this.helpBox.TabIndex = 15;
@@ -252,13 +253,24 @@
             // 
             // createQRButton
             // 
-            this.createQRButton.Location = new System.Drawing.Point(672, 275);
+            this.createQRButton.Location = new System.Drawing.Point(444, 270);
             this.createQRButton.Name = "createQRButton";
             this.createQRButton.Size = new System.Drawing.Size(116, 29);
             this.createQRButton.TabIndex = 16;
             this.createQRButton.Text = "Create QR Code";
             this.createQRButton.UseVisualStyleBackColor = true;
             this.createQRButton.Click += new System.EventHandler(this.createQRButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(741, 136);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 40);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // paletteControl
             // 
@@ -269,21 +281,11 @@
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(681, 343);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 40);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 559);
+            this.ClientSize = new System.Drawing.Size(615, 383);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.createQRButton);
             this.Controls.Add(this.helpBox);
@@ -301,9 +303,11 @@
             this.Controls.Add(this.paletteControl);
             this.Controls.Add(this.patternPanel);
             this.Controls.Add(this.menuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Animal Crossing QR";
+            this.Text = "Uber Animal Crossing QR Tool v0.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

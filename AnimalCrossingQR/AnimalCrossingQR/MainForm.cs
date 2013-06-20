@@ -84,11 +84,7 @@ namespace AnimalCrossingQR
                 Image image = Image.FromStream(fileStream);
                 fileStream.Close();
 
-                ImageSelectDialog imageSelectDialog = new ImageSelectDialog(image);
-                if (imageSelectDialog.ShowDialog() == DialogResult.OK)
-                {
-                    LoadPattern(new AC.Pattern(image));
-                }
+                LoadPattern(new AC.Pattern(image));
             }
         }
 
@@ -99,6 +95,14 @@ namespace AnimalCrossingQR
             {
                 for (int i = 0; i < paletteControl.Items.Length; i++)
                     paletteControl.Items[i] = colorDialog.Items[i];
+
+                if (currentPattern != null)
+                {
+                    for (int i = 0; i < paletteControl.Items.Length; i++)
+                        currentPattern.ColorPalette.SetColor(i, AC.Palette.ColorPalette[paletteControl.Items[i]]);
+
+                    LoadPattern(currentPattern);
+                }
             }
         }
 
@@ -122,16 +126,27 @@ namespace AnimalCrossingQR
 
             if (result != null)
             {
-                AC.Pattern pattern = new AC.Pattern(result.RawBytes);
-                LoadPattern(pattern);
+                try
+                {
+                    AC.Pattern pattern = AC.Pattern.CreateFromRawData(result.RawBytes);
+                    LoadPattern(pattern);
+                }
+                catch (NotImplementedException)
+                {
+                    MessageBox.Show("This type of pattern is currently not supported.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("A valid QR code was not found in the selected image.");
             }
         }
 
-        private AC.Pattern lastPattern;
+        private AC.Pattern currentPattern;
 
         private void LoadPattern(AC.Pattern pattern)
         {
-            lastPattern = pattern;
+            currentPattern = pattern;
 
             titleText.Text = pattern.Title;
             authorNameText.Text = pattern.Author.Name;
@@ -163,7 +178,13 @@ namespace AnimalCrossingQR
 
         private void createQRButton_Click(object sender, EventArgs e)
         {
-            QRDialog qrDialog = new QRDialog(lastPattern);
+            if (currentPattern == null)
+            {
+                MessageBox.Show("There is no pattern currently active.");
+                return;
+            }
+
+            QRDialog qrDialog = new QRDialog(currentPattern);
             qrDialog.ShowDialog();
         }
 
