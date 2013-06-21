@@ -19,13 +19,16 @@ namespace AnimalCrossingQR
         }
 
         private int selectedIndex;
-        public int SelectedIndex { get { return selectedIndex; } set { selectedIndex = value; Invalidate(); } }
+        public int SelectedIndex { get { return DisableSelect ? -1 : selectedIndex; } set { selectedIndex = value; Invalidate(); } }
+
+        public bool DisableSelect { get; set; }
 
         private Brush[] paletteBrushes;
 
         public PaletteControl()
         {
             SelectedIndex = -1;
+            DisableSelect = false;
 
             Items = new PaletteList(15, Invalidate);
             for (int i = 0; i < Items.Length; i++)

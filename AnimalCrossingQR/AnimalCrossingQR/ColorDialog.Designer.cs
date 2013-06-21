@@ -98,6 +98,8 @@
             this.Controls.Add(this.colorPanel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ColorDialog";
             this.Text = "Edit Palette";
             this.Load += new System.EventHandler(this.ColorDialog_Load);

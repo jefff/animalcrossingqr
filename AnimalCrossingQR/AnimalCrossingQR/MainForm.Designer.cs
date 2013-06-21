@@ -54,9 +54,11 @@
             this.helpBox = new System.Windows.Forms.PictureBox();
             this.createQRButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.authorGroup = new System.Windows.Forms.GroupBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
+            this.authorGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -65,7 +67,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(615, 24);
+            this.menuStrip.Size = new System.Drawing.Size(620, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -86,13 +88,13 @@
             this.blankToolStripMenuItem,
             this.fromImageToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
             // 
             this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
-            this.blankToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.blankToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.blankToolStripMenuItem.Text = "Blank";
             this.blankToolStripMenuItem.Visible = false;
             this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
@@ -100,7 +102,7 @@
             // fromImageToolStripMenuItem
             // 
             this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
-            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.fromImageToolStripMenuItem.Text = "From Image...";
             this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
             // 
@@ -109,7 +111,7 @@
             this.openPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromQRCodeToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -122,12 +124,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -140,6 +142,7 @@
             // 
             // editColorsButton
             // 
+            this.editColorsButton.Enabled = false;
             this.editColorsButton.Location = new System.Drawing.Point(12, 341);
             this.editColorsButton.Name = "editColorsButton";
             this.editColorsButton.Size = new System.Drawing.Size(60, 29);
@@ -150,8 +153,8 @@
             // 
             // titleText
             // 
-            this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.titleText.Location = new System.Drawing.Point(404, 52);
+            this.titleText.Enabled = false;
+            this.titleText.Location = new System.Drawing.Point(404, 51);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(197, 20);
             this.titleText.TabIndex = 4;
@@ -160,7 +163,7 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(401, 36);
+            this.titleLabel.Location = new System.Drawing.Point(401, 35);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(27, 13);
             this.titleLabel.TabIndex = 5;
@@ -169,15 +172,15 @@
             // authorNameLabel
             // 
             this.authorNameLabel.AutoSize = true;
-            this.authorNameLabel.Location = new System.Drawing.Point(401, 87);
+            this.authorNameLabel.Location = new System.Drawing.Point(6, 16);
             this.authorNameLabel.Name = "authorNameLabel";
-            this.authorNameLabel.Size = new System.Drawing.Size(69, 13);
+            this.authorNameLabel.Size = new System.Drawing.Size(35, 13);
             this.authorNameLabel.TabIndex = 7;
-            this.authorNameLabel.Text = "Author Name";
+            this.authorNameLabel.Text = "Name";
             // 
             // authorNameText
             // 
-            this.authorNameText.Location = new System.Drawing.Point(404, 103);
+            this.authorNameText.Location = new System.Drawing.Point(9, 32);
             this.authorNameText.Name = "authorNameText";
             this.authorNameText.Size = new System.Drawing.Size(197, 20);
             this.authorNameText.TabIndex = 6;
@@ -185,15 +188,15 @@
             // authorTownLabel
             // 
             this.authorTownLabel.AutoSize = true;
-            this.authorTownLabel.Location = new System.Drawing.Point(401, 126);
+            this.authorTownLabel.Location = new System.Drawing.Point(6, 55);
             this.authorTownLabel.Name = "authorTownLabel";
-            this.authorTownLabel.Size = new System.Drawing.Size(68, 13);
+            this.authorTownLabel.Size = new System.Drawing.Size(34, 13);
             this.authorTownLabel.TabIndex = 9;
-            this.authorTownLabel.Text = "Author Town";
+            this.authorTownLabel.Text = "Town";
             // 
             // authorTownText
             // 
-            this.authorTownText.Location = new System.Drawing.Point(404, 142);
+            this.authorTownText.Location = new System.Drawing.Point(9, 71);
             this.authorTownText.Name = "authorTownText";
             this.authorTownText.Size = new System.Drawing.Size(197, 20);
             this.authorTownText.TabIndex = 8;
@@ -201,20 +204,21 @@
             // authorUniqueIDLabel
             // 
             this.authorUniqueIDLabel.AutoSize = true;
-            this.authorUniqueIDLabel.Location = new System.Drawing.Point(401, 165);
+            this.authorUniqueIDLabel.Location = new System.Drawing.Point(6, 94);
             this.authorUniqueIDLabel.Name = "authorUniqueIDLabel";
-            this.authorUniqueIDLabel.Size = new System.Drawing.Size(89, 13);
+            this.authorUniqueIDLabel.Size = new System.Drawing.Size(55, 13);
             this.authorUniqueIDLabel.TabIndex = 11;
-            this.authorUniqueIDLabel.Text = "Author Unique ID";
+            this.authorUniqueIDLabel.Text = "Unique ID";
             // 
             // authorUniqueIDText
             // 
-            this.authorUniqueIDText.Location = new System.Drawing.Point(404, 181);
+            this.authorUniqueIDText.Location = new System.Drawing.Point(9, 110);
             this.authorUniqueIDText.Mask = ">AA:AA:AA:AA:AA:AA:AA:AA:AA:AA";
             this.authorUniqueIDText.Name = "authorUniqueIDText";
             this.authorUniqueIDText.PromptChar = ' ';
             this.authorUniqueIDText.Size = new System.Drawing.Size(171, 20);
             this.authorUniqueIDText.TabIndex = 12;
+            this.authorUniqueIDText.TextChanged += new System.EventHandler(this.authorUniqueIDText_TextChanged);
             // 
             // imageOpenFileDialog
             // 
@@ -223,7 +227,7 @@
             // 
             // setDefaultButton
             // 
-            this.setDefaultButton.Location = new System.Drawing.Point(411, 207);
+            this.setDefaultButton.Location = new System.Drawing.Point(16, 136);
             this.setDefaultButton.Name = "setDefaultButton";
             this.setDefaultButton.Size = new System.Drawing.Size(89, 29);
             this.setDefaultButton.TabIndex = 13;
@@ -233,7 +237,7 @@
             // 
             // loadDefaultButton
             // 
-            this.loadDefaultButton.Location = new System.Drawing.Point(506, 207);
+            this.loadDefaultButton.Location = new System.Drawing.Point(111, 136);
             this.loadDefaultButton.Name = "loadDefaultButton";
             this.loadDefaultButton.Size = new System.Drawing.Size(87, 29);
             this.loadDefaultButton.TabIndex = 14;
@@ -244,7 +248,7 @@
             // helpBox
             // 
             this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
-            this.helpBox.Location = new System.Drawing.Point(581, 181);
+            this.helpBox.Location = new System.Drawing.Point(186, 110);
             this.helpBox.Name = "helpBox";
             this.helpBox.Size = new System.Drawing.Size(20, 20);
             this.helpBox.TabIndex = 15;
@@ -253,7 +257,8 @@
             // 
             // createQRButton
             // 
-            this.createQRButton.Location = new System.Drawing.Point(444, 270);
+            this.createQRButton.Enabled = false;
+            this.createQRButton.Location = new System.Drawing.Point(447, 297);
             this.createQRButton.Name = "createQRButton";
             this.createQRButton.Size = new System.Drawing.Size(116, 29);
             this.createQRButton.TabIndex = 16;
@@ -263,7 +268,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(741, 136);
+            this.button1.Location = new System.Drawing.Point(794, 119);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 40);
             this.button1.TabIndex = 17;
@@ -272,8 +277,28 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // authorGroup
+            // 
+            this.authorGroup.Controls.Add(this.authorNameLabel);
+            this.authorGroup.Controls.Add(this.authorNameText);
+            this.authorGroup.Controls.Add(this.authorTownText);
+            this.authorGroup.Controls.Add(this.helpBox);
+            this.authorGroup.Controls.Add(this.authorTownLabel);
+            this.authorGroup.Controls.Add(this.loadDefaultButton);
+            this.authorGroup.Controls.Add(this.authorUniqueIDLabel);
+            this.authorGroup.Controls.Add(this.setDefaultButton);
+            this.authorGroup.Controls.Add(this.authorUniqueIDText);
+            this.authorGroup.Location = new System.Drawing.Point(395, 88);
+            this.authorGroup.Name = "authorGroup";
+            this.authorGroup.Size = new System.Drawing.Size(217, 182);
+            this.authorGroup.TabIndex = 18;
+            this.authorGroup.TabStop = false;
+            this.authorGroup.Text = "Author";
+            this.authorGroup.UseCompatibleTextRendering = true;
+            // 
             // paletteControl
             // 
+            this.paletteControl.DisableSelect = true;
             this.paletteControl.Location = new System.Drawing.Point(12, 27);
             this.paletteControl.Name = "paletteControl";
             this.paletteControl.SelectedIndex = -1;
@@ -285,18 +310,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 383);
+            this.ClientSize = new System.Drawing.Size(620, 383);
+            this.Controls.Add(this.authorGroup);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.createQRButton);
-            this.Controls.Add(this.helpBox);
-            this.Controls.Add(this.loadDefaultButton);
-            this.Controls.Add(this.setDefaultButton);
-            this.Controls.Add(this.authorUniqueIDText);
-            this.Controls.Add(this.authorUniqueIDLabel);
-            this.Controls.Add(this.authorTownLabel);
-            this.Controls.Add(this.authorTownText);
-            this.Controls.Add(this.authorNameLabel);
-            this.Controls.Add(this.authorNameText);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.titleText);
             this.Controls.Add(this.editColorsButton);
@@ -304,6 +321,7 @@
             this.Controls.Add(this.patternPanel);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -312,6 +330,8 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).EndInit();
+            this.authorGroup.ResumeLayout(false);
+            this.authorGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,6 +365,7 @@
         private System.Windows.Forms.PictureBox helpBox;
         private System.Windows.Forms.Button createQRButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox authorGroup;
 
     }
 }

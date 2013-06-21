@@ -134,12 +134,12 @@ namespace AnimalCrossingQR
                 }
                 catch (NotImplementedException)
                 {
-                    MessageBox.Show("This type of pattern is currently not supported.");
+                    MessageBox.Show("This type of pattern is currently not supported.", Text);
                 }
             }
             else
             {
-                MessageBox.Show("A valid QR code was not found in the selected image.");
+                MessageBox.Show("A valid QR code was not found in the selected image.", Text);
             }
         }
 
@@ -159,6 +159,9 @@ namespace AnimalCrossingQR
 
             patternPanel.BackgroundImageLayout = ImageLayout.None;
             patternPanel.BackgroundImage = RenderPattern(pattern, 8);
+
+            editColorsButton.Enabled = true;
+            createQRButton.Enabled = true;
         }
 
         private void loadDefaultButton_Click(object sender, EventArgs e)
@@ -179,6 +182,8 @@ namespace AnimalCrossingQR
 
         private void SavePattern()
         {
+            authorUniqueIDText.Text = new string(authorUniqueIDText.Text.Where(c => char.IsNumber(c) || c == ':' || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')).ToArray());
+
             currentPattern.Title = titleText.Text;
             currentPattern.Author.Name = authorNameText.Text;
             currentPattern.Author.Town = authorTownText.Text;
@@ -193,7 +198,7 @@ namespace AnimalCrossingQR
         {
             if (currentPattern == null)
             {
-                MessageBox.Show("There is no pattern currently active.");
+                MessageBox.Show("There is no pattern currently active.", Text);
                 return;
             }
 
@@ -217,6 +222,14 @@ namespace AnimalCrossingQR
                     }
 
                 bitmap.Save(imageOpenFileDialog.FileName + ".png");
+            }
+        }
+
+        private void authorUniqueIDText_TextChanged(object sender, EventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(authorUniqueIDText.Text, @"\A\b[0-9a-fA-F:]+\b\Z"))
+            {
+                authorUniqueIDText.Text = new string(authorUniqueIDText.Text.Where(c => char.IsNumber(c) || c == ':' || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')).ToArray());
             }
         }
     }

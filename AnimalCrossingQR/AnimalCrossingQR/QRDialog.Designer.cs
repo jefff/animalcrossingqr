@@ -110,6 +110,9 @@
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.qrBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "QRDialog";
             this.Text = "QR Code";
             this.Load += new System.EventHandler(this.QRDialog_Load);
