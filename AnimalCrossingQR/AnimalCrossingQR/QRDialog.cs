@@ -38,7 +38,7 @@ namespace AnimalCrossingQR
             ZXing.BarcodeWriter writer = new ZXing.BarcodeWriter();
             writer.Format = ZXing.BarcodeFormat.QR_CODE;
 
-            string data = System.Text.UTF8Encoding.Default.GetString(pattern.GetRawData());
+            string data = new string(pattern.GetRawData().Select(b => Convert.ToChar(b)).ToArray());
             ZXing.Common.BitMatrix matrix = writer.Encode(data);
 
             Bitmap result = new Bitmap(matrix.Width * scale, matrix.Height * scale);
