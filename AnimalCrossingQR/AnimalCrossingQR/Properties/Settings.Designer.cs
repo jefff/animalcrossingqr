@@ -49,7 +49,7 @@ namespace AnimalCrossingQR.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:00:00:00:00:00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00:00:00:00:00:00:00:00:00")]
         public string AuthorUniqueID {
             get {
                 return ((string)(this["AuthorUniqueID"]));

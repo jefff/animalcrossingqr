@@ -85,6 +85,7 @@ namespace AnimalCrossingQR
                 fileStream.Close();
 
                 LoadPattern(new AC.Pattern(image));
+                LoadSettings();
             }
         }
 
@@ -176,6 +177,18 @@ namespace AnimalCrossingQR
             MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
 
+        private void SavePattern()
+        {
+            currentPattern.Title = titleText.Text;
+            currentPattern.Author.Name = authorNameText.Text;
+            currentPattern.Author.Town = authorTownText.Text;
+            currentPattern.Author.UniqueID =
+                authorUniqueIDText.Text
+                .Split(':')
+                .Select(s => Convert.ToByte(s.Trim().PadLeft(2, '0'), 16))
+                .ToArray();
+        }
+
         private void createQRButton_Click(object sender, EventArgs e)
         {
             if (currentPattern == null)
@@ -184,6 +197,7 @@ namespace AnimalCrossingQR
                 return;
             }
 
+            SavePattern();
             QRDialog qrDialog = new QRDialog(currentPattern);
             qrDialog.ShowDialog();
         }

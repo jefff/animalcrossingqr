@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AnimalCrossingQR
 {
@@ -56,27 +62,29 @@ namespace AnimalCrossingQR
             sfd.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg";
 
             if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Image outputImage = new Bitmap(400, 240);
-                using (Graphics graphics = Graphics.FromImage(outputImage))
-                {
-                    graphics.Clear(Color.White);
-
-                    StringFormat sf = new StringFormat();
-                    sf.LineAlignment = StringAlignment.Center;
-                    sf.Alignment = StringAlignment.Center;
-                    Font font = new System.Drawing.Font("Arial", 18, FontStyle.Regular);
-                    graphics.DrawString(pattern.Title, font, Brushes.Black, 195, 18, sf);
-
-                    graphics.DrawImage(CreateQRCode(pattern, 2), new Point(187, 35));
-
-                    graphics.DrawImage(RenderPattern(pattern, 4), 37, 69);
-                }
-
-                outputImage.Save(sfd.FileName);
-            }
+                CreateOutputImage().Save(sfd.FileName);
         }
 
+        private Image CreateOutputImage()
+        {
+            Image outputImage = new Bitmap(400, 240);
+            using (Graphics graphics = Graphics.FromImage(outputImage))
+            {
+                graphics.Clear(Color.White);
+
+                StringFormat sf = new StringFormat();
+                sf.LineAlignment = StringAlignment.Center;
+                sf.Alignment = StringAlignment.Center;
+                Font font = new System.Drawing.Font("Arial", 18, FontStyle.Regular);
+                graphics.DrawString(pattern.Title, font, Brushes.Black, 195, 18, sf);
+
+                graphics.DrawImage(CreateQRCode(pattern, 2), new Point(187, 35));
+
+                graphics.DrawImage(RenderPattern(pattern, 4), 37, 69);
+            }
+
+            return outputImage;
+        }
 
         private Image RenderPattern(AC.Pattern pattern, int scale)
         {
@@ -103,6 +111,51 @@ namespace AnimalCrossingQR
         private void closeButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void uploadButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                uploadButton.Text = "Uploading...";
+                uploadButton.Enabled = false;
+                using (WebClient w = new WebClient())
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Image outputImage = CreateOutputImage();
+
+                    outputImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                    var values = new NameValueCollection
+                    {
+                        { "image", Convert.ToBase64String(ms.ToArray()) }
+                    };
+                    w.Headers.Add("Authorization", "Client-ID c388ed6b11fecdb");
+
+                    byte[] response = w.UploadValues("https://api.imgur.com/3/image", values);
+
+                    JObject result = (JObject)JsonConvert.DeserializeObject(System.Text.Encoding.ASCII.GetString(response));
+
+                    string link = result["data"]["link"].ToString();
+                    linkBox.Text = link;
+                    linkBox.Visible = true;
+                    goButton.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Upload failed!\nReason: " + ex.Message);
+            }
+            finally
+            {
+                uploadButton.Text = "Upload to Imgur";
+                uploadButton.Enabled = true;
+            }
+        }
+
+        private void goButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkBox.Text);
         }
     }
 }

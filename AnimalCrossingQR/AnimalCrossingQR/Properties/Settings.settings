@@ -9,7 +9,7 @@
       <Value Profile="(Default)">Nowhere</Value>
     </Setting>
     <Setting Name="AuthorUniqueID" Type="System.String" Scope="User">
-      <Value Profile="(Default)">00:00:00:00:00:00</Value>
+      <Value Profile="(Default)">00:00:00:00:00:00:00:00:00:00</Value>
     </Setting>
   </Settings>
 </SettingsFile>

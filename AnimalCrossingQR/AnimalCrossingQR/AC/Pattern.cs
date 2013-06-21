@@ -167,12 +167,7 @@ namespace AnimalCrossingQR.AC
             MemoryStream memoryStream = new MemoryStream();
             BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
             NibbleWriter nibbleWriter = new NibbleWriter(binaryWriter);
-
-            //nibbleWriter.WriteByte(0x40);
-
-           // nibbleWriter.WriteByte(0x26);
-            //nibbleWriter.WriteNibble(0xC);
-            
+                        
             nibbleWriter.WriteString(Title, 42);
             Author.Write(nibbleWriter);
 
@@ -190,11 +185,6 @@ namespace AnimalCrossingQR.AC
                     nibbleWriter.WriteNibble(Data[i + 1, j]);
                     nibbleWriter.WriteNibble(Data[i, j]);
                 }
-            //nibbleWriter.WriteNibble(0x0);
-            /*nibbleWriter.WriteByte(0xEC);
-            nibbleWriter.WriteByte(0x11);
-            nibbleWriter.WriteByte(0xEC);
-            nibbleWriter.WriteByte(0x11);*/
 
             byte[] result = memoryStream.ToArray();
             memoryStream.Close();
