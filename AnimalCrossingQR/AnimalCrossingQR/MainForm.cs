@@ -125,6 +125,7 @@ namespace AnimalCrossingQR
             reader.PossibleFormats = new[] { ZXing.BarcodeFormat.QR_CODE };
             ZXing.Result result = reader.Decode(bitmap);
 
+
             if (result != null)
             {
                 try
@@ -160,6 +161,7 @@ namespace AnimalCrossingQR
             patternPanel.BackgroundImageLayout = ImageLayout.None;
             patternPanel.BackgroundImage = RenderPattern(pattern, 8);
 
+            titleText.Enabled = true;
             editColorsButton.Enabled = true;
             createQRButton.Enabled = true;
         }
