@@ -60,6 +60,7 @@ namespace AnimalCrossingQR
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg";
+            sfd.FileName = pattern.Title + ".png";
 
             if (sfd.ShowDialog() == DialogResult.OK)
                 CreateOutputImage().Save(sfd.FileName);
