@@ -213,7 +213,7 @@
             // authorUniqueIDText
             // 
             this.authorUniqueIDText.Location = new System.Drawing.Point(9, 110);
-            this.authorUniqueIDText.Mask = ">AA:AA:AA:AA:AA:AA:AA:AA:AA:AA";
+            this.authorUniqueIDText.Mask = ">AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA:AA";
             this.authorUniqueIDText.Name = "authorUniqueIDText";
             this.authorUniqueIDText.PromptChar = ' ';
             this.authorUniqueIDText.Size = new System.Drawing.Size(171, 20);

@@ -34,6 +34,10 @@ namespace AnimalCrossingQR
             authorNameText.Text = Settings.Default["AuthorName"].ToString();
             authorTownText.Text = Settings.Default["AuthorTown"].ToString();
             authorUniqueIDText.Text = Settings.Default["AuthorUniqueID"].ToString();
+
+            authorUniqueIDText.Text = string.Join(":", authorUniqueIDText.Text
+                .Split(':')
+                .Select(s => s.Trim().PadLeft(2, '0')));
         }
 
         private void SaveSettings()
