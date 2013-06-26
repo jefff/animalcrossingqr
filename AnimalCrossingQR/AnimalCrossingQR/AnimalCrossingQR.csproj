@@ -144,6 +144,7 @@
       <DependentUpon>QRDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="StructuredAppendQR.cs" />
     <EmbeddedResource Include="ColorDialog.resx">
       <DependentUpon>ColorDialog.cs</DependentUpon>
     </EmbeddedResource>
