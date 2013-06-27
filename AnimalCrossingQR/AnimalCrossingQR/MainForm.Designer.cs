@@ -55,6 +55,8 @@
             this.createQRButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.authorGroup = new System.Windows.Forms.GroupBox();
+            this.fromQRCodeURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromImageURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
@@ -86,15 +88,16 @@
             // 
             this.newPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.blankToolStripMenuItem,
-            this.fromImageToolStripMenuItem});
+            this.fromImageToolStripMenuItem,
+            this.fromImageURLToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
             // 
             this.blankToolStripMenuItem.Name = "blankToolStripMenuItem";
-            this.blankToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.blankToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.blankToolStripMenuItem.Text = "Blank";
             this.blankToolStripMenuItem.Visible = false;
             this.blankToolStripMenuItem.Click += new System.EventHandler(this.blankToolStripMenuItem_Click);
@@ -102,34 +105,35 @@
             // fromImageToolStripMenuItem
             // 
             this.fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
-            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.fromImageToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.fromImageToolStripMenuItem.Text = "From Image...";
             this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
             // 
             // openPatternToolStripMenuItem
             // 
             this.openPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fromQRCodeToolStripMenuItem});
+            this.fromQRCodeToolStripMenuItem,
+            this.fromQRCodeURLToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
             // 
             this.fromQRCodeToolStripMenuItem.Name = "fromQRCodeToolStripMenuItem";
-            this.fromQRCodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fromQRCodeToolStripMenuItem.Text = "From QR Code";
+            this.fromQRCodeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.fromQRCodeToolStripMenuItem.Text = "From QR Code...";
             this.fromQRCodeToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -296,6 +300,20 @@
             this.authorGroup.Text = "Author";
             this.authorGroup.UseCompatibleTextRendering = true;
             // 
+            // fromQRCodeURLToolStripMenuItem
+            // 
+            this.fromQRCodeURLToolStripMenuItem.Name = "fromQRCodeURLToolStripMenuItem";
+            this.fromQRCodeURLToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.fromQRCodeURLToolStripMenuItem.Text = "From QR Code URL...";
+            this.fromQRCodeURLToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeURLToolStripMenuItem_Click);
+            // 
+            // fromImageURLToolStripMenuItem
+            // 
+            this.fromImageURLToolStripMenuItem.Name = "fromImageURLToolStripMenuItem";
+            this.fromImageURLToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.fromImageURLToolStripMenuItem.Text = "From Image URL...";
+            this.fromImageURLToolStripMenuItem.Click += new System.EventHandler(this.fromImageURLToolStripMenuItem_Click);
+            // 
             // paletteControl
             // 
             this.paletteControl.DisableSelect = true;
@@ -325,7 +343,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Uber Animal Crossing QR Tool v0.2";
+            this.Text = "Uber Animal Crossing QR Tool v0.3";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -366,6 +384,8 @@
         private System.Windows.Forms.Button createQRButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox authorGroup;
+        private System.Windows.Forms.ToolStripMenuItem fromQRCodeURLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromImageURLToolStripMenuItem;
 
     }
 }

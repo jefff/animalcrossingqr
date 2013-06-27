@@ -17,7 +17,7 @@ namespace AnimalCrossingQR
         Thread thread;
         byte[] downloadData;
 
-        public Image ResultImage { get; private set; }
+        public Bitmap ResultImage { get; private set; }
 
         public URLDialog()
         {
@@ -57,7 +57,7 @@ namespace AnimalCrossingQR
                             downloadData = webClient.DownloadData(url);
 
                         MemoryStream ms = new MemoryStream(downloadData);
-                        ResultImage = Bitmap.FromStream(ms);
+                        ResultImage = (Bitmap)Bitmap.FromStream(ms);
 
                         DialogResult = DialogResult.OK;
                     }

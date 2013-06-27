@@ -93,6 +93,16 @@ namespace AnimalCrossingQR
             }
         }
 
+        private void fromImageURLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            URLDialog urlDialog = new URLDialog();
+            if (urlDialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadPattern(new AC.Pattern(urlDialog.ResultImage));
+                LoadSettings();
+            }
+        }
+
         private void editColorsButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog(paletteControl.Items);
@@ -120,6 +130,15 @@ namespace AnimalCrossingQR
                 fileStream.Close();
 
                 LoadFromQR(bitmap);
+            }
+        }
+
+        private void fromQRCodeURLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            URLDialog urlDialog = new URLDialog();
+            if (urlDialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadFromQR(urlDialog.ResultImage);
             }
         }
 
