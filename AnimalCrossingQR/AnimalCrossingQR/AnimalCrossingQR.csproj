@@ -145,6 +145,12 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="StructuredAppendQR.cs" />
+    <Compile Include="URLDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="URLDialog.Designer.cs">
+      <DependentUpon>URLDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ColorDialog.resx">
       <DependentUpon>ColorDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +175,9 @@
     </Compile>
     <EmbeddedResource Include="QRDialog.resx">
       <DependentUpon>QRDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="URLDialog.resx">
+      <DependentUpon>URLDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
