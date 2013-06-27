@@ -14,8 +14,9 @@ namespace AnimalCrossingQR
 {
     public partial class URLDialog : Form
     {
-        Thread thread;
-        byte[] downloadData;
+        private Thread thread;
+        private byte[] downloadData;
+        private MemoryStream memoryStream;
 
         public Bitmap ResultImage { get; private set; }
 
@@ -56,12 +57,12 @@ namespace AnimalCrossingQR
                         using (WebClient webClient = new WebClient())
                             downloadData = webClient.DownloadData(url);
 
-                        MemoryStream ms = new MemoryStream(downloadData);
-                        ResultImage = (Bitmap)Bitmap.FromStream(ms);
+                        memoryStream = new MemoryStream(downloadData);
+                        ResultImage = (Bitmap)Bitmap.FromStream(memoryStream);
 
                         DialogResult = DialogResult.OK;
                     }
-                    catch (WebException e)
+                    catch (WebException)
                     {
                         errorLabel.Invoke((Action)(() =>
                             {
@@ -69,7 +70,7 @@ namespace AnimalCrossingQR
                                 errorLabel.Visible = true;
                             }));
                     }
-                    catch (ArgumentException e)
+                    catch (ArgumentException)
                     {
                         errorLabel.Invoke((Action)(() =>
                         {
@@ -84,11 +85,17 @@ namespace AnimalCrossingQR
                     {
                         thread = null;
 
-                        okButton.Invoke((Action)(() =>
+                        try
                         {
-                            okButton.Text = "OK";
-                            okButton.Enabled = true;
-                        }));
+                            okButton.Invoke((Action)(() =>
+                            {
+                                okButton.Text = "OK";
+                                okButton.Enabled = true;
+                            }));
+                        }
+                        catch (ObjectDisposedException)
+                        {
+                        }
                     }
                 });
 
@@ -111,6 +118,25 @@ namespace AnimalCrossingQR
             }
 
             DialogResult = DialogResult.Cancel;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                    components.Dispose();
+                components = null;
+
+                if (memoryStream != null)
+                    memoryStream.Dispose();
+                memoryStream = null;
+
+                if (ResultImage != null)
+                    ResultImage.Dispose();
+                ResultImage = null;
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -84,18 +84,17 @@ namespace AnimalCrossingQR
         {
             if (imageOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open);
-                Image image = Image.FromStream(fileStream);
-                fileStream.Close();
+                using (FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open))
+                using (Image image = Image.FromStream(fileStream))
+                    LoadPattern(new AC.Pattern(image));
 
-                LoadPattern(new AC.Pattern(image));
                 LoadSettings();
             }
         }
 
         private void fromImageURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            URLDialog urlDialog = new URLDialog();
+            using (URLDialog urlDialog = new URLDialog())
             if (urlDialog.ShowDialog() == DialogResult.OK)
             {
                 LoadPattern(new AC.Pattern(urlDialog.ResultImage));
@@ -105,7 +104,7 @@ namespace AnimalCrossingQR
 
         private void editColorsButton_Click(object sender, EventArgs e)
         {
-            ColorDialog colorDialog = new ColorDialog(paletteControl.Items);
+            using (ColorDialog colorDialog = new ColorDialog(paletteControl.Items))
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < paletteControl.Items.Length; i++)
@@ -125,21 +124,17 @@ namespace AnimalCrossingQR
         {
             if (imageOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open);
-                Bitmap bitmap = (Bitmap)Bitmap.FromStream(fileStream);
-                fileStream.Close();
-
-                LoadFromQR(bitmap);
+                using (FileStream fileStream = new FileStream(imageOpenFileDialog.FileName, FileMode.Open))
+                using (Bitmap bitmap = (Bitmap)Bitmap.FromStream(fileStream))
+                    LoadFromQR(bitmap);
             }
         }
 
         private void fromQRCodeURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            URLDialog urlDialog = new URLDialog();
+            using (URLDialog urlDialog = new URLDialog())
             if (urlDialog.ShowDialog() == DialogResult.OK)
-            {
                 LoadFromQR(urlDialog.ResultImage);
-            }
         }
 
         private void LoadFromQR(Bitmap bitmap)
@@ -228,8 +223,8 @@ namespace AnimalCrossingQR
             }
 
             SavePattern();
-            QRDialog qrDialog = new QRDialog(currentPattern);
-            qrDialog.ShowDialog();
+            using (QRDialog qrDialog = new QRDialog(currentPattern))
+                qrDialog.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
