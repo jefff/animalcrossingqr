@@ -143,6 +143,12 @@
     <Compile Include="QRDialog.Designer.cs">
       <DependentUpon>QRDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="QRSelectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QRSelectDialog.Designer.cs">
+      <DependentUpon>QRSelectDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="StructuredAppendQR.cs" />
     <Compile Include="URLDialog.cs">
@@ -175,6 +181,9 @@
     </Compile>
     <EmbeddedResource Include="QRDialog.resx">
       <DependentUpon>QRDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QRSelectDialog.resx">
+      <DependentUpon>QRSelectDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="URLDialog.resx">
       <DependentUpon>URLDialog.cs</DependentUpon>

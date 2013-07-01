@@ -137,18 +137,46 @@ namespace AnimalCrossingQR
                 LoadFromQR(urlDialog.ResultImage);
         }
 
+        private static Rectangle RectangleFromResultPoints(ZXing.ResultPoint[] resultPoints)
+        {
+            PointF minPoint = new PointF(resultPoints[0].X, resultPoints[0].Y);
+            PointF maxPoint = minPoint;
+
+            foreach (var point in resultPoints)
+            {
+                minPoint.X = Math.Min(minPoint.X, point.X);
+                minPoint.Y = Math.Min(minPoint.Y, point.Y);
+                maxPoint.X = Math.Max(maxPoint.X, point.X);
+                maxPoint.Y = Math.Max(maxPoint.Y, point.Y);
+            }
+
+            return new Rectangle((int)minPoint.X, (int)minPoint.Y, (int)(maxPoint.X - minPoint.X), (int)(maxPoint.Y - minPoint.Y));
+        }
+
         private void LoadFromQR(Bitmap bitmap)
         {
             ZXing.BarcodeReader reader = new ZXing.BarcodeReader();
             reader.PossibleFormats = new[] { ZXing.BarcodeFormat.QR_CODE };
-            ZXing.Result result = reader.Decode(bitmap);
+            reader.TryHarder = true;
+            ZXing.Result[] results = reader.DecodeMultiple(bitmap);
 
-
-            if (result != null)
+            if (results != null && results.Length > 0)
             {
                 try
                 {
-                    AC.Pattern pattern = AC.Pattern.CreateFromRawData(result.RawBytes);
+                    byte[] rawBytes = null;
+                    if (results.Length == 1)
+                        rawBytes = results[0].RawBytes;
+                    else
+                    {
+                        QRSelectDialog qrSelectDialog = new QRSelectDialog(bitmap, results.Select(r => RectangleFromResultPoints(r.ResultPoints)).ToArray());
+                        if (qrSelectDialog.ShowDialog() != DialogResult.OK)
+                            return;
+
+                        rawBytes = results[qrSelectDialog.SelectedIndex].RawBytes;
+                    }
+
+                    AC.Pattern pattern = AC.Pattern.CreateFromRawData(rawBytes);
                     LoadPattern(pattern);
                 }
                 catch (NotImplementedException)
