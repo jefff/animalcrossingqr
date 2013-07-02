@@ -38,7 +38,6 @@
             this.fromQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patternPanel = new System.Windows.Forms.Panel();
             this.editColorsButton = new System.Windows.Forms.Button();
             this.titleText = new System.Windows.Forms.TextBox();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -51,16 +50,17 @@
             this.imageOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.setDefaultButton = new System.Windows.Forms.Button();
             this.loadDefaultButton = new System.Windows.Forms.Button();
-            this.helpBox = new System.Windows.Forms.PictureBox();
             this.createQRButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.authorGroup = new System.Windows.Forms.GroupBox();
             this.fromQRCodeURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromImageURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpBox = new System.Windows.Forms.PictureBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
+            this.patternEditor = new AnimalCrossingQR.PatternEditor();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.authorGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -91,7 +91,7 @@
             this.fromImageToolStripMenuItem,
             this.fromImageURLToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
@@ -115,7 +115,7 @@
             this.fromQRCodeToolStripMenuItem,
             this.fromQRCodeURLToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -128,21 +128,14 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // patternPanel
-            // 
-            this.patternPanel.Location = new System.Drawing.Point(95, 27);
-            this.patternPanel.Name = "patternPanel";
-            this.patternPanel.Size = new System.Drawing.Size(294, 344);
-            this.patternPanel.TabIndex = 1;
             // 
             // editColorsButton
             // 
@@ -249,16 +242,6 @@
             this.loadDefaultButton.UseVisualStyleBackColor = true;
             this.loadDefaultButton.Click += new System.EventHandler(this.loadDefaultButton_Click);
             // 
-            // helpBox
-            // 
-            this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
-            this.helpBox.Location = new System.Drawing.Point(186, 110);
-            this.helpBox.Name = "helpBox";
-            this.helpBox.Size = new System.Drawing.Size(20, 20);
-            this.helpBox.TabIndex = 15;
-            this.helpBox.TabStop = false;
-            this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
-            // 
             // createQRButton
             // 
             this.createQRButton.Enabled = false;
@@ -314,6 +297,16 @@
             this.fromImageURLToolStripMenuItem.Text = "From Image URL...";
             this.fromImageURLToolStripMenuItem.Click += new System.EventHandler(this.fromImageURLToolStripMenuItem_Click);
             // 
+            // helpBox
+            // 
+            this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
+            this.helpBox.Location = new System.Drawing.Point(186, 110);
+            this.helpBox.Name = "helpBox";
+            this.helpBox.Size = new System.Drawing.Size(20, 20);
+            this.helpBox.TabIndex = 15;
+            this.helpBox.TabStop = false;
+            this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
+            // 
             // paletteControl
             // 
             this.paletteControl.DisableSelect = true;
@@ -324,11 +317,19 @@
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
             // 
+            // patternEditor
+            // 
+            this.patternEditor.Location = new System.Drawing.Point(95, 35);
+            this.patternEditor.Name = "patternEditor";
+            this.patternEditor.Size = new System.Drawing.Size(294, 335);
+            this.patternEditor.TabIndex = 19;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(620, 383);
+            this.Controls.Add(this.patternEditor);
             this.Controls.Add(this.authorGroup);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.createQRButton);
@@ -336,7 +337,6 @@
             this.Controls.Add(this.titleText);
             this.Controls.Add(this.editColorsButton);
             this.Controls.Add(this.paletteControl);
-            this.Controls.Add(this.patternPanel);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -347,9 +347,9 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).EndInit();
             this.authorGroup.ResumeLayout(false);
             this.authorGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.helpBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,7 +366,6 @@
         private System.Windows.Forms.ToolStripMenuItem fromQRCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Panel patternPanel;
         private PaletteControl paletteControl;
         private System.Windows.Forms.Button editColorsButton;
         private System.Windows.Forms.TextBox titleText;
@@ -386,6 +385,7 @@
         private System.Windows.Forms.GroupBox authorGroup;
         private System.Windows.Forms.ToolStripMenuItem fromQRCodeURLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromImageURLToolStripMenuItem;
+        private PatternEditor patternEditor;
 
     }
 }

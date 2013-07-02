@@ -204,8 +204,8 @@ namespace AnimalCrossingQR
             for (int i = 0; i < pattern.ColorPalette.Colors.Length; i++)
                 paletteControl.Items[i] = AC.Palette.GetColorIndexByCode(pattern.ColorPalette.Colors[i]);
 
-            patternPanel.BackgroundImageLayout = ImageLayout.None;
-            patternPanel.BackgroundImage = RenderPattern(pattern, 8);
+            //patternEditor.Pattern = pattern;
+            patternEditor.LoadPattern(pattern);
 
             titleText.Enabled = true;
             editColorsButton.Enabled = true;
