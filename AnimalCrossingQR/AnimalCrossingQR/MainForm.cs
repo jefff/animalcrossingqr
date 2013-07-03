@@ -280,5 +280,10 @@ namespace AnimalCrossingQR
                 authorUniqueIDText.Text = new string(authorUniqueIDText.Text.Where(c => char.IsNumber(c) || c == ':' || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')).ToArray());
             }
         }
+
+        private void gridCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            patternEditor.ShowGrid = gridCheckBox.Checked;
+        }
     }
 }

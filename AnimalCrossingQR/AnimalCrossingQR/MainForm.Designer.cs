@@ -34,8 +34,10 @@
             this.newPatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromImageURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromQRCodeURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editColorsButton = new System.Windows.Forms.Button();
@@ -53,11 +55,10 @@
             this.createQRButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.authorGroup = new System.Windows.Forms.GroupBox();
-            this.fromQRCodeURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromImageURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpBox = new System.Windows.Forms.PictureBox();
             this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.patternEditor = new AnimalCrossingQR.PatternEditor();
+            this.gridCheckBox = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             this.authorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
@@ -109,6 +110,13 @@
             this.fromImageToolStripMenuItem.Text = "From Image...";
             this.fromImageToolStripMenuItem.Click += new System.EventHandler(this.fromImageToolStripMenuItem_Click);
             // 
+            // fromImageURLToolStripMenuItem
+            // 
+            this.fromImageURLToolStripMenuItem.Name = "fromImageURLToolStripMenuItem";
+            this.fromImageURLToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.fromImageURLToolStripMenuItem.Text = "From Image URL...";
+            this.fromImageURLToolStripMenuItem.Click += new System.EventHandler(this.fromImageURLToolStripMenuItem_Click);
+            // 
             // openPatternToolStripMenuItem
             // 
             this.openPatternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -124,6 +132,13 @@
             this.fromQRCodeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.fromQRCodeToolStripMenuItem.Text = "From QR Code...";
             this.fromQRCodeToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeToolStripMenuItem_Click);
+            // 
+            // fromQRCodeURLToolStripMenuItem
+            // 
+            this.fromQRCodeURLToolStripMenuItem.Name = "fromQRCodeURLToolStripMenuItem";
+            this.fromQRCodeURLToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.fromQRCodeURLToolStripMenuItem.Text = "From QR Code URL...";
+            this.fromQRCodeURLToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeURLToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -283,20 +298,6 @@
             this.authorGroup.Text = "Author";
             this.authorGroup.UseCompatibleTextRendering = true;
             // 
-            // fromQRCodeURLToolStripMenuItem
-            // 
-            this.fromQRCodeURLToolStripMenuItem.Name = "fromQRCodeURLToolStripMenuItem";
-            this.fromQRCodeURLToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.fromQRCodeURLToolStripMenuItem.Text = "From QR Code URL...";
-            this.fromQRCodeURLToolStripMenuItem.Click += new System.EventHandler(this.fromQRCodeURLToolStripMenuItem_Click);
-            // 
-            // fromImageURLToolStripMenuItem
-            // 
-            this.fromImageURLToolStripMenuItem.Name = "fromImageURLToolStripMenuItem";
-            this.fromImageURLToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.fromImageURLToolStripMenuItem.Text = "From Image URL...";
-            this.fromImageURLToolStripMenuItem.Click += new System.EventHandler(this.fromImageURLToolStripMenuItem_Click);
-            // 
             // helpBox
             // 
             this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
@@ -321,14 +322,27 @@
             // 
             this.patternEditor.Location = new System.Drawing.Point(95, 35);
             this.patternEditor.Name = "patternEditor";
-            this.patternEditor.Size = new System.Drawing.Size(294, 335);
+            this.patternEditor.ShowGrid = false;
+            this.patternEditor.Size = new System.Drawing.Size(294, 300);
             this.patternEditor.TabIndex = 19;
+            // 
+            // gridCheckBox
+            // 
+            this.gridCheckBox.AutoSize = true;
+            this.gridCheckBox.Location = new System.Drawing.Point(115, 348);
+            this.gridCheckBox.Name = "gridCheckBox";
+            this.gridCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.gridCheckBox.TabIndex = 20;
+            this.gridCheckBox.Text = "Show Grid";
+            this.gridCheckBox.UseVisualStyleBackColor = true;
+            this.gridCheckBox.CheckedChanged += new System.EventHandler(this.gridCheckBox_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(620, 383);
+            this.Controls.Add(this.gridCheckBox);
             this.Controls.Add(this.patternEditor);
             this.Controls.Add(this.authorGroup);
             this.Controls.Add(this.button1);
@@ -386,6 +400,7 @@
         private System.Windows.Forms.ToolStripMenuItem fromQRCodeURLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromImageURLToolStripMenuItem;
         private PatternEditor patternEditor;
+        private System.Windows.Forms.CheckBox gridCheckBox;
 
     }
 }

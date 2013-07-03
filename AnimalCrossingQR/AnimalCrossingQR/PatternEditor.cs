@@ -21,17 +21,27 @@ namespace AnimalCrossingQR
         private Brush[] brushes;
 
         private const int PixelSize = 9;
+        private readonly Pen GridPen = new Pen(Color.FromArgb(156, 154, 156));
 
         public PatternEditor()
         {
             pixels = new byte[AC.Pattern.Width, AC.Pattern.Height];
-            palette = new AC.Palette();
+            ClearPattern();
 
             brushes = AC.Palette.ColorPalette
                 .Select(c => new SolidBrush(Color.FromArgb(c.Red, c.Green, c.Blue)))
                 .ToArray();
 
             InitializeComponent();
+        }
+
+        public void ClearPattern()
+        {
+            for (int i = 0; i < pixels.GetLength(0); i++)
+                for (int j = 0; j < pixels.GetLength(1); j++)
+                    pixels[i, j] = 12;
+
+            palette = new AC.Palette();
         }
 
         public void LoadPattern(AC.Pattern pattern)
@@ -85,9 +95,9 @@ namespace AnimalCrossingQR
         private void DrawGrid(Graphics graphics)
         {
             for (int i = 0; i < pixels.GetLength(0) + 1; i++)
-                graphics.DrawLine(Pens.Black, PixelSize * i, 0, PixelSize * i, pixels.GetLength(0) * PixelSize);
+                graphics.DrawLine(GridPen, PixelSize * i, 0, PixelSize * i, pixels.GetLength(0) * PixelSize);
             for (int i = 0; i < pixels.GetLength(1) + 1; i++)
-                graphics.DrawLine(Pens.Black, 0, PixelSize * i, pixels.GetLength(1) * PixelSize, PixelSize * i);
+                graphics.DrawLine(GridPen, 0, PixelSize * i, pixels.GetLength(1) * PixelSize, PixelSize * i);
         }
 
         private void PatternEditor_Paint(object sender, PaintEventArgs e)
