@@ -56,9 +56,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.authorGroup = new System.Windows.Forms.GroupBox();
             this.helpBox = new System.Windows.Forms.PictureBox();
-            this.paletteControl = new AnimalCrossingQR.PaletteControl();
-            this.patternEditor = new AnimalCrossingQR.PatternEditor();
             this.gridCheckBox = new System.Windows.Forms.CheckBox();
+            this.patternEditor = new AnimalCrossingQR.PatternEditor();
+            this.paletteControl = new AnimalCrossingQR.PaletteControl();
             this.menuStrip.SuspendLayout();
             this.authorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.helpBox)).BeginInit();
@@ -92,7 +92,7 @@
             this.fromImageToolStripMenuItem,
             this.fromImageURLToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
@@ -123,7 +123,7 @@
             this.fromQRCodeToolStripMenuItem,
             this.fromQRCodeURLToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -143,19 +143,18 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editColorsButton
             // 
-            this.editColorsButton.Enabled = false;
-            this.editColorsButton.Location = new System.Drawing.Point(12, 341);
+            this.editColorsButton.Location = new System.Drawing.Point(17, 341);
             this.editColorsButton.Name = "editColorsButton";
             this.editColorsButton.Size = new System.Drawing.Size(60, 29);
             this.editColorsButton.TabIndex = 3;
@@ -165,7 +164,6 @@
             // 
             // titleText
             // 
-            this.titleText.Enabled = false;
             this.titleText.Location = new System.Drawing.Point(404, 51);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(197, 20);
@@ -308,24 +306,6 @@
             this.helpBox.TabStop = false;
             this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
             // 
-            // paletteControl
-            // 
-            this.paletteControl.DisableSelect = true;
-            this.paletteControl.Location = new System.Drawing.Point(12, 27);
-            this.paletteControl.Name = "paletteControl";
-            this.paletteControl.SelectedIndex = -1;
-            this.paletteControl.SelectedItem = -1;
-            this.paletteControl.Size = new System.Drawing.Size(77, 308);
-            this.paletteControl.TabIndex = 2;
-            // 
-            // patternEditor
-            // 
-            this.patternEditor.Location = new System.Drawing.Point(95, 35);
-            this.patternEditor.Name = "patternEditor";
-            this.patternEditor.ShowGrid = false;
-            this.patternEditor.Size = new System.Drawing.Size(294, 300);
-            this.patternEditor.TabIndex = 19;
-            // 
             // gridCheckBox
             // 
             this.gridCheckBox.AutoSize = true;
@@ -336,6 +316,30 @@
             this.gridCheckBox.Text = "Show Grid";
             this.gridCheckBox.UseVisualStyleBackColor = true;
             this.gridCheckBox.CheckedChanged += new System.EventHandler(this.gridCheckBox_CheckedChanged);
+            // 
+            // patternEditor
+            // 
+            this.patternEditor.DrawingEnabled = true;
+            this.patternEditor.LeftColor = ((byte)(0));
+            this.patternEditor.Location = new System.Drawing.Point(95, 35);
+            this.patternEditor.Name = "patternEditor";
+            this.patternEditor.RightColor = ((byte)(1));
+            this.patternEditor.ShowGrid = false;
+            this.patternEditor.Size = new System.Drawing.Size(294, 300);
+            this.patternEditor.TabIndex = 19;
+            // 
+            // paletteControl
+            // 
+            this.paletteControl.Location = new System.Drawing.Point(12, 27);
+            this.paletteControl.Name = "paletteControl";
+            this.paletteControl.SecondarySelectedIndex = -1;
+            this.paletteControl.SelectedIndex = -1;
+            this.paletteControl.SelectedItem = -1;
+            this.paletteControl.Selection = AnimalCrossingQR.PaletteControl.SelectionType.DoubleSelect;
+            this.paletteControl.Size = new System.Drawing.Size(77, 308);
+            this.paletteControl.TabIndex = 2;
+            this.paletteControl.SelectedIndexChanged += new System.EventHandler(this.paletteControl_SelectedIndexChanged);
+            this.paletteControl.SecondarySelectedIndexChanged += new System.EventHandler(this.paletteControl_SecondarySelectedIndexChanged);
             // 
             // MainForm
             // 

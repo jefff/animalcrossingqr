@@ -19,16 +19,59 @@ namespace AnimalCrossingQR
         }
 
         private int selectedIndex;
-        public int SelectedIndex { get { return DisableSelect ? -1 : selectedIndex; } set { selectedIndex = value; Invalidate(); } }
+        public int SelectedIndex
+        {
+            get
+            {
+                return (Selection == SelectionType.Disabled) ? -1 : selectedIndex;
+            }
+            set
+            {
+                selectedIndex = value;
+                Invalidate();
+                OnSelectedIndexChanged();
+            }
+        }
 
-        public bool DisableSelect { get; set; }
+        private int secondarySelectedIndex;
+        public int SecondarySelectedIndex
+        {
+            get
+            {
+                return (Selection != SelectionType.DoubleSelect) ? -1 : secondarySelectedIndex;
+            }
+            set
+            {
+                secondarySelectedIndex = value;
+                Invalidate();
+                OnSecondarySelectedIndexChanged();
+            }
+        }
+
+        public event EventHandler SelectedIndexChanged;
+        public event EventHandler SecondarySelectedIndexChanged;
+
+        public enum SelectionType
+        {
+            Disabled,
+            SingleSelect,
+            DoubleSelect,
+        }
+        public SelectionType Selection { get; set; }
 
         private Brush[] paletteBrushes;
+
+        private const int LeftBorder = 10;
+        private const int TopBorder = 5;
+        private const int SelectionBorderWidth = 2;
+        private const int ColorWidth = 50;
+        private const int ColorHeight = 15;
+        private const int ColorDistance = 20;
 
         public PaletteControl()
         {
             SelectedIndex = -1;
-            DisableSelect = false;
+            Selection = SelectionType.SingleSelect;
 
             Items = new PaletteList(15, Invalidate);
             for (int i = 0; i < Items.Length; i++)
@@ -41,19 +84,59 @@ namespace AnimalCrossingQR
             InitializeComponent();
         }
 
+        private void OnSelectedIndexChanged()
+        {
+            if (SelectedIndexChanged != null)
+                SelectedIndexChanged(this, EventArgs.Empty);
+        }
+
+        private void OnSecondarySelectedIndexChanged()
+        {
+            if (SecondarySelectedIndexChanged != null)
+                SecondarySelectedIndexChanged(this, EventArgs.Empty);
+        }
+
+        private static void DrawTriangle(Graphics graphics, Brush brush, int x, int y, bool pointLeft)
+        {
+            Point[] trianglePoints = new[]
+            {
+                new Point(x, y),
+                new Point(x + ((LeftBorder / 2) * (pointLeft ? 1 : -1)), y - (LeftBorder / 2)),
+                new Point(x + ((LeftBorder / 2) * (pointLeft ? 1 : -1)), y + (LeftBorder / 2)),
+            };
+
+            graphics.FillPolygon(brush, trianglePoints);
+        }
+
         private void Palette_Paint(object sender, PaintEventArgs e)
         {
             for (int i = 0; i < Items.Length; i++)
             {
-                e.Graphics.FillRectangle(i == SelectedIndex ? Brushes.Gold : Brushes.Black, new Rectangle(5 - 2, 5 - 2 + 20 * i, 50 + 4, 15 + 4));
-                e.Graphics.FillRectangle(paletteBrushes[Items[i]], new Rectangle(5, 5 + 20 * i, 50, 15));
+                Rectangle colorRectangle = new Rectangle(LeftBorder, TopBorder + ColorDistance * i, ColorWidth, ColorHeight);
+                Rectangle selectionRectangle = Rectangle.Inflate(colorRectangle, SelectionBorderWidth, SelectionBorderWidth);
+
+                e.Graphics.FillRectangle((Selection == SelectionType.SingleSelect) && (i == SelectedIndex) ? Brushes.Gold : Brushes.Black, selectionRectangle);
+                e.Graphics.FillRectangle(paletteBrushes[Items[i]], colorRectangle);
+
+                if (Selection == SelectionType.DoubleSelect)
+                {
+                    if (i == SelectedIndex)
+                        DrawTriangle(e.Graphics, Brushes.Black, LeftBorder / 2, TopBorder + ColorDistance * i + ColorHeight / 2, false);
+                    if (i == SecondarySelectedIndex)
+                        DrawTriangle(e.Graphics, Brushes.Black, LeftBorder / 2 + LeftBorder + ColorWidth, TopBorder + ColorDistance * i + ColorHeight / 2, true);
+                }
             }
         }
 
         private void PaletteControl_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.X > 5 && e.X < 55)
-                SelectedIndex = (e.Y - 5) / 20;
+            if (e.X > LeftBorder && e.X < LeftBorder + ColorWidth)
+            {
+                if (e.Button == MouseButtons.Left)
+                    SelectedIndex = (e.Y - TopBorder) / ColorDistance;
+                else if (e.Button == MouseButtons.Right)
+                    SecondarySelectedIndex = (e.Y - TopBorder) / ColorDistance;
+            }
         }
     }
 

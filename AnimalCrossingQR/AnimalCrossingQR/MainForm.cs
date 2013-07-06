@@ -285,5 +285,17 @@ namespace AnimalCrossingQR
         {
             patternEditor.ShowGrid = gridCheckBox.Checked;
         }
+
+        private void paletteControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (paletteControl.SelectedIndex != -1)
+                patternEditor.LeftColor = (byte)paletteControl.SelectedIndex;
+        }
+
+        private void paletteControl_SecondarySelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (paletteControl.SecondarySelectedIndex != -1)
+                patternEditor.RightColor = (byte)paletteControl.SecondarySelectedIndex;
+        }
     }
 }
