@@ -14,6 +14,11 @@ namespace AnimalCrossingQR
         private bool showGrid = false;
         public bool ShowGrid { get { return showGrid; } set { showGrid = value; Refresh(); } }
 
+        public bool DrawingEnabled { get; set; }
+
+        public byte LeftColor { get; set; }
+        public byte RightColor { get; set; }
+
         private AC.Pattern pattern;
 
         private byte[,] pixels;
@@ -25,6 +30,10 @@ namespace AnimalCrossingQR
 
         public PatternEditor()
         {
+            DrawingEnabled = true;
+            LeftColor = 0;
+            RightColor = 1;
+
             pixels = new byte[AC.Pattern.Width, AC.Pattern.Height];
             ClearPattern();
 
@@ -106,6 +115,44 @@ namespace AnimalCrossingQR
 
             if (ShowGrid)
                 DrawGrid(e.Graphics);
+        }
+
+        private Point GetPixelAt(int x, int y)
+        {
+            return new Point(x / PixelSize, y / PixelSize);
+        }
+
+        private void DrawPoint(Point point, byte color)
+        {
+            if (new Rectangle(0, 0, 32, 32).Contains(point))
+            {
+                pixels[point.X, point.Y] = color;
+
+                Invalidate();
+            }
+        }
+
+        private void PatternEditor_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!DrawingEnabled)
+                return;
+
+            Point point = GetPixelAt(e.X, e.Y);
+            byte color = e.Button == MouseButtons.Left ? LeftColor : RightColor;
+            DrawPoint(point, color);
+        }
+
+        private void PatternEditor_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!DrawingEnabled)
+                return;
+
+            if (!(e.Button == MouseButtons.Left || e.Button == MouseButtons.Right))
+                return;
+
+            Point point = GetPixelAt(e.X, e.Y);
+            byte color = e.Button == MouseButtons.Left ? LeftColor : RightColor;
+            DrawPoint(point, color);
         }
     }
 }

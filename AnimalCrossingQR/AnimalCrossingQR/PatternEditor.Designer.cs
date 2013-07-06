@@ -34,9 +34,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.DoubleBuffered = true;
             this.Name = "PatternEditor";
             this.Size = new System.Drawing.Size(400, 400);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PatternEditor_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PatternEditor_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PatternEditor_MouseMove);
             this.ResumeLayout(false);
 
         }
