@@ -93,7 +93,7 @@ namespace AnimalCrossingQR
                                 okButton.Enabled = true;
                             }));
                         }
-                        catch (ObjectDisposedException)
+                        catch (Exception)
                         {
                         }
                     }
