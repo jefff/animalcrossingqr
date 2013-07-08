@@ -322,7 +322,7 @@
             this.patternEditor.LeftColor = ((byte)(0));
             this.patternEditor.Location = new System.Drawing.Point(95, 35);
             this.patternEditor.Name = "patternEditor";
-            this.patternEditor.RightColor = ((byte)(1));
+            this.patternEditor.RightColor = ((byte)(0));
             this.patternEditor.ShowGrid = false;
             this.patternEditor.Size = new System.Drawing.Size(294, 300);
             this.patternEditor.TabIndex = 19;
@@ -331,9 +331,9 @@
             // 
             this.paletteControl.Location = new System.Drawing.Point(12, 27);
             this.paletteControl.Name = "paletteControl";
-            this.paletteControl.SecondarySelectedIndex = -1;
-            this.paletteControl.SelectedIndex = -1;
-            this.paletteControl.SelectedItem = -1;
+            this.paletteControl.SecondarySelectedIndex = 0;
+            this.paletteControl.SelectedIndex = 0;
+            this.paletteControl.SelectedItem = 31;
             this.paletteControl.Selection = AnimalCrossingQR.PaletteControl.SelectionType.DoubleSelect;
             this.paletteControl.Size = new System.Drawing.Size(77, 308);
             this.paletteControl.TabIndex = 2;
