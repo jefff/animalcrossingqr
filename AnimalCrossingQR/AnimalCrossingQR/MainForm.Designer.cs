@@ -92,7 +92,7 @@
             this.fromImageToolStripMenuItem,
             this.fromImageURLToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
@@ -123,7 +123,7 @@
             this.fromQRCodeToolStripMenuItem,
             this.fromQRCodeURLToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -143,12 +143,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -257,7 +257,6 @@
             // 
             // createQRButton
             // 
-            this.createQRButton.Enabled = false;
             this.createQRButton.Location = new System.Drawing.Point(447, 297);
             this.createQRButton.Name = "createQRButton";
             this.createQRButton.Size = new System.Drawing.Size(116, 29);

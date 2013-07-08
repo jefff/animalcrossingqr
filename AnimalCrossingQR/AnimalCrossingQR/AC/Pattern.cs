@@ -26,6 +26,13 @@ namespace AnimalCrossingQR.AC
         public Pattern()
         {
             Data = new byte[Width, Height];
+
+            Author = new User();
+            Title = "Untitled";
+
+            Type = PatternType.Normal;
+
+            ColorPalette = new Palette();
         }
 
         public Pattern(Image image)
@@ -58,10 +65,6 @@ namespace AnimalCrossingQR.AC
 
         private void LoadFromPixelData(byte[] data)
         {
-            Title = "Untitled";
-            Author = new User("Someone", "Nowhere", new byte[] { 0, 0, 0, 0, 0, 0 });
-            Type = PatternType.Normal;
-
             Color[,] sourceImage = new Color[Width, Height];
             for (int i = 0; i < Width; i++)
                 for (int j = 0; j < Height; j++)

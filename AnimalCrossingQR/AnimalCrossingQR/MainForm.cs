@@ -110,13 +110,7 @@ namespace AnimalCrossingQR
                 for (int i = 0; i < paletteControl.Items.Length; i++)
                     paletteControl.Items[i] = colorDialog.Items[i];
 
-                if (currentPattern != null)
-                {
-                    for (int i = 0; i < paletteControl.Items.Length; i++)
-                        currentPattern.ColorPalette.SetColor(i, AC.Palette.ColorPalette[paletteControl.Items[i]]);
-
-                    LoadPattern(currentPattern);
-                }
+                patternEditor.SetColorPalette(colorDialog.GetAsPalette());
             }
         }
 
@@ -190,12 +184,8 @@ namespace AnimalCrossingQR
             }
         }
 
-        private AC.Pattern currentPattern;
-
         private void LoadPattern(AC.Pattern pattern)
         {
-            currentPattern = pattern;
-
             titleText.Text = pattern.Title;
             authorNameText.Text = pattern.Author.Name;
             authorTownText.Text = pattern.Author.Town;
@@ -204,7 +194,6 @@ namespace AnimalCrossingQR
             for (int i = 0; i < pattern.ColorPalette.Colors.Length; i++)
                 paletteControl.Items[i] = AC.Palette.GetColorIndexByCode(pattern.ColorPalette.Colors[i]);
 
-            //patternEditor.Pattern = pattern;
             patternEditor.LoadPattern(pattern);
 
             titleText.Enabled = true;
@@ -228,30 +217,26 @@ namespace AnimalCrossingQR
             MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
 
-        private void SavePattern()
+        private AC.Pattern GetPattern()
         {
             authorUniqueIDText.Text = new string(authorUniqueIDText.Text.Where(c => char.IsNumber(c) || c == ':' || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')).ToArray());
 
-            currentPattern.Title = titleText.Text;
-            currentPattern.Author.Name = authorNameText.Text;
-            currentPattern.Author.Town = authorTownText.Text;
-            currentPattern.Author.UniqueID =
+            AC.Pattern pattern = patternEditor.GetPattern();
+            pattern.Title = titleText.Text;
+            pattern.Author.Name = authorNameText.Text;
+            pattern.Author.Town = authorTownText.Text;
+            pattern.Author.UniqueID =
                 authorUniqueIDText.Text
                 .Split(':')
                 .Select(s => Convert.ToByte(s.Trim().PadLeft(2, '0'), 16))
                 .ToArray();
+
+            return pattern;
         }
 
         private void createQRButton_Click(object sender, EventArgs e)
         {
-            if (currentPattern == null)
-            {
-                MessageBox.Show("There is no pattern currently active.", Text);
-                return;
-            }
-
-            SavePattern();
-            using (QRDialog qrDialog = new QRDialog(currentPattern))
+            using (QRDialog qrDialog = new QRDialog(GetPattern()))
                 qrDialog.ShowDialog();
         }
 

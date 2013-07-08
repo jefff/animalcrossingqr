@@ -19,8 +19,6 @@ namespace AnimalCrossingQR
         public byte LeftColor { get; set; }
         public byte RightColor { get; set; }
 
-        private AC.Pattern pattern;
-
         private byte[,] pixels;
         private AC.Palette palette;
         private Brush[] brushes;
@@ -55,8 +53,6 @@ namespace AnimalCrossingQR
 
         public void LoadPattern(AC.Pattern pattern)
         {
-            this.pattern = pattern;
-
             for (int i = 0; i < pixels.GetLength(0); i++)
                 for (int j = 0; j < pixels.GetLength(1); j++)
                     pixels[i, j] = pattern.Data[i, j];
@@ -69,7 +65,25 @@ namespace AnimalCrossingQR
 
         public AC.Pattern GetPattern()
         {
-            return null;
+            AC.Pattern pattern = new AC.Pattern();
+
+            for (int i = 0; i < AC.Pattern.Width; i++)
+                for (int j = 0; j < AC.Pattern.Height; j++)
+                    pattern.Data[i, j] = pixels[i, j];
+
+            pattern.ColorPalette = new AC.Palette();
+            Array.Copy(palette.Colors, pattern.ColorPalette.Colors, pattern.ColorPalette.Colors.Length);
+
+            pattern.Author = new AC.User();
+            pattern.Title = "Untitled";
+
+            return pattern;
+        }
+
+        public void SetColorPalette(AC.Palette palette)
+        {
+            Array.Copy(palette.Colors, this.palette.Colors, this.palette.Colors.Length);
+            Invalidate();
         }
 
         private Color FromPaletteColor(AC.Color color)

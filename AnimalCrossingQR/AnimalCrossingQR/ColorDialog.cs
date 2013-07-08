@@ -40,6 +40,15 @@ namespace AnimalCrossingQR
                 Items[i] = list[i];
         }
 
+        public AC.Palette GetAsPalette()
+        {
+            AC.Palette palette = new AC.Palette();
+            for (int i = 0; i < paletteControl.Items.Length; i++)
+                palette.SetColor(i, AC.Palette.ColorPalette[paletteControl.Items[i]]);
+
+            return palette;
+        }
+
         private void ColorDialog_Load(object sender, EventArgs e)
         {
             textFont = new System.Drawing.Font("Microsoft San Serif", 8);

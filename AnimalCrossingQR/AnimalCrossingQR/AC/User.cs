@@ -18,6 +18,11 @@ namespace AnimalCrossingQR.AC
             UniqueID = uniqueID;
         }
 
+        public User()
+            : this("Someone", "Nowhere", new byte[14])
+        {
+        }
+
         public User(NibbleReader nibbleReader)
         {
             UniqueID = new byte[14];
