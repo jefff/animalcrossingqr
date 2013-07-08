@@ -33,7 +33,7 @@ namespace AnimalCrossingQR
             RightColor = 1;
 
             pixels = new byte[AC.Pattern.Width, AC.Pattern.Height];
-            ClearPattern();
+            Clear();
 
             brushes = AC.Palette.ColorPalette
                 .Select(c => new SolidBrush(Color.FromArgb(c.Red, c.Green, c.Blue)))
@@ -42,13 +42,15 @@ namespace AnimalCrossingQR
             InitializeComponent();
         }
 
-        public void ClearPattern()
+        public void Clear()
         {
             for (int i = 0; i < pixels.GetLength(0); i++)
                 for (int j = 0; j < pixels.GetLength(1); j++)
                     pixels[i, j] = 12;
 
             palette = new AC.Palette();
+
+            Invalidate();
         }
 
         public void LoadPattern(AC.Pattern pattern)

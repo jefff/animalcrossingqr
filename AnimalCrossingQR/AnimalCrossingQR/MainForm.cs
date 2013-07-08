@@ -77,7 +77,7 @@ namespace AnimalCrossingQR
 
         private void blankToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            patternEditor.Clear();
         }
 
         private void fromImageToolStripMenuItem_Click(object sender, EventArgs e)
