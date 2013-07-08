@@ -21,6 +21,7 @@ namespace AnimalCrossingQR
 
         private byte[,] pixels;
         private AC.Palette palette;
+        private byte[] savedPalette;
         private Brush[] brushes;
 
         private const int PixelSize = 9;
@@ -85,6 +86,19 @@ namespace AnimalCrossingQR
         public void SetColorPalette(AC.Palette palette)
         {
             Array.Copy(palette.Colors, this.palette.Colors, this.palette.Colors.Length);
+            Invalidate();
+        }
+
+        // Saves the color palette to be restored with EndPreview
+        public void BeginPreview()
+        {
+            savedPalette = new byte[palette.Colors.Length];
+            Array.Copy(palette.Colors, savedPalette, savedPalette.Length);
+        }
+
+        public void EndPreview()
+        {
+            Array.Copy(savedPalette, palette.Colors, palette.Colors.Length);
             Invalidate();
         }
 

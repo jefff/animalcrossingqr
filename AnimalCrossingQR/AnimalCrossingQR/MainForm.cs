@@ -105,12 +105,22 @@ namespace AnimalCrossingQR
         private void editColorsButton_Click(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog(paletteControl.Items))
-            if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < paletteControl.Items.Length; i++)
-                    paletteControl.Items[i] = colorDialog.Items[i];
+                patternEditor.BeginPreview();
 
-                patternEditor.SetColorPalette(colorDialog.GetAsPalette());
+                colorDialog.ColorPaletteChanged +=
+                    (o, s) => patternEditor.SetColorPalette(colorDialog.GetAsPalette());
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    for (int i = 0; i < paletteControl.Items.Length; i++)
+                        paletteControl.Items[i] = colorDialog.Items[i];
+
+                    patternEditor.SetColorPalette(colorDialog.GetAsPalette());
+                }
+                else
+                {
+                    patternEditor.EndPreview();
+                }
             }
         }
 

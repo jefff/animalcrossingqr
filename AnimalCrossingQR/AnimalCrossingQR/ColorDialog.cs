@@ -13,12 +13,13 @@ namespace AnimalCrossingQR
     {
         public PaletteList Items { get { return paletteControl.Items; } }
 
+        public event EventHandler ColorPaletteChanged;
+
+
         private Brush[] oppositePaletteBrushes;
         private Brush[] paletteBrushes;
         private string[] paletteLabels;
-
-        private int selectedIndex = -1;
-
+        
         private Font textFont;
         private StringFormat stringFormat;
 
@@ -67,6 +68,12 @@ namespace AnimalCrossingQR
                 .ToArray();
 
             paletteLabels = new string[AC.Palette.ColorPalette.Length];
+        }
+
+        private void OnColorPaletteChanged()
+        {
+            if (ColorPaletteChanged != null)
+                ColorPaletteChanged(this, EventArgs.Empty);
         }
 
         private void DrawFullColorPalette(Graphics graphics)
@@ -125,22 +132,14 @@ namespace AnimalCrossingQR
             DrawFullColorPalette(e.Graphics);
         }
 
-        private void palettePanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void palettePanel_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.X > 5 && e.X < 55)
-                selectedIndex = (e.Y - 5) / 20;
-        }
-
         private void colorPanel_MouseClick(object sender, MouseEventArgs e)
         {
             int? color = GetColorClick(e.X, e.Y);
             if (color != null)
+            {
                 paletteControl.SelectedItem = color.Value;
+                OnColorPaletteChanged();
+            }
 
             colorPanel.Invalidate();
         }
