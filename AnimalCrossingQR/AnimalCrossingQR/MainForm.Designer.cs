@@ -92,7 +92,7 @@
             this.fromImageToolStripMenuItem,
             this.fromImageURLToolStripMenuItem});
             this.newPatternToolStripMenuItem.Name = "newPatternToolStripMenuItem";
-            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.newPatternToolStripMenuItem.Text = "New Pattern";
             // 
             // blankToolStripMenuItem
@@ -122,7 +122,7 @@
             this.fromQRCodeToolStripMenuItem,
             this.fromQRCodeURLToolStripMenuItem});
             this.openPatternToolStripMenuItem.Name = "openPatternToolStripMenuItem";
-            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openPatternToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.openPatternToolStripMenuItem.Text = "Open Pattern";
             // 
             // fromQRCodeToolStripMenuItem
@@ -142,12 +142,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -359,7 +359,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Uber Animal Crossing QR Tool v0.3";
+            this.Text = "Uber Animal Crossing QR Tool v0.4";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
