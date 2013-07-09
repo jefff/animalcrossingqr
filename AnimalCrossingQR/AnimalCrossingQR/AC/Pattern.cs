@@ -47,7 +47,7 @@ namespace AnimalCrossingQR.AC
                 gr.DrawImage(image, new Rectangle(0, 0, Width, Height));
             }
 
-            BitmapData bitmapData = resizedImage.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+            BitmapData bitmapData = resizedImage.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
             byte[] imagePixelData = new byte[Math.Abs(bitmapData.Stride) * bitmapData.Height];
             Marshal.Copy(bitmapData.Scan0, imagePixelData, 0, imagePixelData.Length);
             resizedImage.UnlockBits(bitmapData);
@@ -68,7 +68,11 @@ namespace AnimalCrossingQR.AC
             Color[,] sourceImage = new Color[Width, Height];
             for (int i = 0; i < Width; i++)
                 for (int j = 0; j < Height; j++)
-                    sourceImage[i, j] = new Color(data[(j * Height + i) * 3 + 2], data[(j * Height + i) * 3 + 1], data[(j * Height + i) * 3 + 0]);
+                    sourceImage[i, j] = new Color(
+                        data[(j * Height + i) * 4 + 2],
+                        data[(j * Height + i) * 4 + 1],
+                        data[(j * Height + i) * 4 + 0],
+                        data[(j * Height + i) * 4 + 3]);
 
             HashSet<Color> bestPalette = CreateBestPalette(sourceImage);
             ColorPalette = new Palette();

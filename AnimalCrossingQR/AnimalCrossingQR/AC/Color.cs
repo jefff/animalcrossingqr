@@ -19,6 +19,16 @@ namespace AnimalCrossingQR.AC
             Blue = blue;
         }
 
+        public Color(byte red, byte green, byte blue, byte alpha)
+            : this(LerpWhite(red, alpha), LerpWhite(green, alpha), LerpWhite(blue, alpha))
+        {
+        }
+
+        private static byte LerpWhite(byte color, byte alpha)
+        {
+            return (byte)(255.0 + (color - 255.0) * ((double)alpha / 255.0));
+        }
+
         public static double DistanceSquared(Color a, Color b)
         {
             return (a.Red - b.Red) * (a.Red - b.Red) +
