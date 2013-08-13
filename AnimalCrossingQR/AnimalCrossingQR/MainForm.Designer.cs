@@ -296,13 +296,13 @@
             // 
             // helpBox
             // 
+            this.helpBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.helpBox.Image = ((System.Drawing.Image)(resources.GetObject("helpBox.Image")));
             this.helpBox.Location = new System.Drawing.Point(186, 110);
             this.helpBox.Name = "helpBox";
             this.helpBox.Size = new System.Drawing.Size(20, 20);
             this.helpBox.TabIndex = 15;
             this.helpBox.TabStop = false;
-            this.helpBox.Click += new System.EventHandler(this.helpBox_Click);
             // 
             // gridCheckBox
             // 

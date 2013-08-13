@@ -14,10 +14,11 @@ namespace AnimalCrossingQR
     public partial class MainForm : Form
     {
         private const string SetDefaultMessage = "Do you want to make the current author the default?";
-        private const string UniqueIDHelpMessage = "To be considered the 'owner' of a particular pattern (and for it" +
-            " to be editable in game), your name, town name and unique ID must match. The easiest way to determine" +
-            " your unique ID is to open a QR code of a pattern you created. After doing so, press 'Save as default'" +
-            " so that you can use it for other patterns and gain in-game ownership of any QR codes you create.";
+        private const string UniqueIDHelpMessage =
+            "To be considered the 'owner' of a particular pattern (and for it to be editable in game), your\n" +
+            "name, town name and unique ID must match. The easiest way to determine your unique ID is to\n" +
+            "open a QR code of a pattern you created. After doing so, press 'Save as default' so that\n" +
+            "you can use it for other patterns and gain in-game ownership of any QR codes you create.";
 
         public MainForm()
         {
@@ -27,6 +28,10 @@ namespace AnimalCrossingQR
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ToolTip UniqueIdTooltip = new ToolTip();
+            UniqueIdTooltip.IsBalloon = true;
+            UniqueIdTooltip.UseFading = true;
+            UniqueIdTooltip.SetToolTip(helpBox, UniqueIDHelpMessage);
         }
 
         private void LoadSettings()
@@ -220,11 +225,6 @@ namespace AnimalCrossingQR
         {
             if (MessageBox.Show(SetDefaultMessage, Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 SaveSettings();
-        }
-
-        private void helpBox_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(UniqueIDHelpMessage, Text, MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
 
         private AC.Pattern GetPattern()
